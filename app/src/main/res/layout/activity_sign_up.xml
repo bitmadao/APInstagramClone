@@ -7,18 +7,71 @@
     tools:context=".SignUp">
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
+        android:id="@+id/glvMiddle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glhButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/glhButtons"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/swClass">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtInpName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/hint_input_name" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtInpPunchSpeed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/hint_input_punch_speed" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtInpPunchPower"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/hint_input_punch_power" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtInpKickSpeed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/hint_input_kick_speed" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtKickPower"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/hint_input_kick_power" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/txtHelloWorld"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,17 +82,28 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Boxer"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/glvMiddle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtHelloWorld" />
+        app:layout_constraintTop_toTopOf="@+id/glhButtons" />
 
     <Button
         android:id="@+id/btnKickBoxer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="KickBoxer"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="@+id/glvMiddle"
+        app:layout_constraintTop_toTopOf="@+id/glhButtons" />
+
+    <Switch
+        android:id="@+id/swClass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/switch_class_name_boxer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtHelloWorld" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

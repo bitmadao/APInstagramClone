@@ -1,10 +1,20 @@
 <resources>
     <string name="app_name">APInstagramClone</string>
 
+    <!-- Parse-server stuff -->
     <string name="back4app_server_url">https://parseapi.back4app.com/</string>
-
     <!-- Change the following strings as required -->
     <string name="back4app_app_id">71dhWoKUMOeo9nZzm3ng2ReL1u5Owezm792FkwKt</string>
     <string name="back4app_client_key">OLwQh6RUgLdALx8XGLnSydGG9s5bZXP0Ak8efBcr</string>
+
+    <!-- Sign-up form hints and strings-->
+    <string name="switch_class_name_boxer">Boxer</string>
+    <string name="switch_class_name_kickboxer">Kickboxer</string>
+    <string name="hint_input_name">Enter name</string>
+    <string name="hint_input_punch_speed">Enter punch speed (default 2000)</string>
+    <string name="hint_input_punch_power">Enter punch power (default 200)</string>
+    <string name="hint_input_kick_speed">Enter kick speed (default 3000)</string>
+    <string name="hint_input_kick_power">Enter kick speed (default 300)</string>
+
 
 </resources>
