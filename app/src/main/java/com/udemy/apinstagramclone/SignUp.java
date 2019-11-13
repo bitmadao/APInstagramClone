@@ -8,13 +8,13 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.SaveCallback;
+import com.shashank.sony.fancytoastlib.FancyToast;
 
 public class SignUp extends AppCompatActivity
         implements
@@ -65,9 +65,21 @@ public class SignUp extends AppCompatActivity
             @Override
             public void done(ParseException e) {
                 if(e == null){
-                    Toast.makeText(SignUp.this, boxer.get("name") +" object saved successfully! (Boxer)", Toast.LENGTH_LONG).show();
+                    FancyToast.makeText(
+                            SignUp.this,
+                            boxer.get("name") +" object saved successfully! (Boxer)",
+                            FancyToast.LENGTH_LONG,
+                            FancyToast.SUCCESS,
+                            false
+                    ).show();
                 } else {
-                    Toast.makeText(SignUp.this, e.toString(), Toast.LENGTH_LONG).show();
+                    FancyToast.makeText(
+                            SignUp.this,
+                            e.toString(),
+                            FancyToast.LENGTH_LONG,
+                            FancyToast.ERROR,
+                            false
+                    ).show();
                 }
             }
         });
@@ -86,9 +98,20 @@ public class SignUp extends AppCompatActivity
             @Override
             public void done(ParseException e) {
                 if(e == null){
-                    Toast.makeText(SignUp.this, kickBoxer.get("name") + " object saved successfully! (KickBoxer)", Toast.LENGTH_LONG).show();
+                    FancyToast.makeText(
+                            SignUp.this,
+                            kickBoxer.get("name") +" object saved successfully! (KickBoxer)",
+                            FancyToast.LENGTH_LONG,FancyToast.SUCCESS,
+                            false
+                    ).show();
                 } else {
-                    Toast.makeText(SignUp.this, e.toString(), Toast.LENGTH_LONG).show();
+                    FancyToast.makeText(
+                            SignUp.this,
+                            e.toString(),
+                            FancyToast.LENGTH_LONG,
+                            FancyToast.ERROR,
+                            false
+                    ).show();
                 }
             }
         });
@@ -97,7 +120,7 @@ public class SignUp extends AppCompatActivity
 
     public void btnRegisterTapped(){
         if(txtInpName.getText().toString().isEmpty()){
-            Toast.makeText(SignUp.this, "We need at least a name to register..", Toast.LENGTH_LONG).show();
+            FancyToast.makeText(SignUp.this, "We need at least a name to register..", FancyToast.LENGTH_LONG,FancyToast.INFO,false ).show();
         } else {
             String name = txtInpName.getText().toString();
             int punchSpeed = 2000;
