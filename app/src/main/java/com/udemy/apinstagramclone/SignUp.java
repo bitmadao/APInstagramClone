@@ -71,10 +71,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener{
         });
     }
 
-    public void helloWorldTapped(View view){
-        btnBoxerTapped();
-    }
-
     @Override
     public void onClick(View v) {
 
