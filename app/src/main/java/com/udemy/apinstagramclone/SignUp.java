@@ -5,17 +5,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.SaveCallback;
 
-public class SignUp extends AppCompatActivity implements View.OnClickListener{
+public class SignUp extends AppCompatActivity implements View.OnClickListener, Switch.OnCheckedChangeListener{
 
-    private Button btnBoxer;
-    private Button btnKickBoxer;
+    private Button btnBoxer, btnKickBoxer;
+    private Switch swClass;
+
+    private TextInputEditText txtInpName, txtInpPunchSpeed, txtInpPunchPower, txtInpKickSpeed, txtInpKickPower;
+    private TextInputLayout txtInpLayKickSpeed, txtInpLayKickPower;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +35,18 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener{
 
         btnBoxer = findViewById(R.id.btnBoxer);
         btnKickBoxer = findViewById(R.id.btnKickBoxer);
+        swClass = findViewById(R.id.swClass);
+
+
+        txtInpLayKickSpeed = findViewById(R.id.txtInpLayKickSpeed);
+        txtInpLayKickPower = findViewById(R.id.txtInpLayKickPower);
+
+        txtInpLayKickSpeed.setVisibility(View.GONE);
+        txtInpLayKickPower.setVisibility(View.GONE);
 
         btnBoxer.setOnClickListener(SignUp.this);
         btnKickBoxer.setOnClickListener(SignUp.this);
-
+        swClass.setOnCheckedChangeListener(SignUp.this);
 
     }
 
@@ -81,6 +96,19 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener{
             case R.id.btnKickBoxer:
                 btnKickBoxerTapped();
                 break;
+        }
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if(isChecked){
+            buttonView.setText(R.string.switch_class_name_kickboxer);
+            txtInpLayKickSpeed.setVisibility(View.VISIBLE);
+            txtInpLayKickPower.setVisibility(View.VISIBLE);
+        } else {
+            buttonView.setText(R.string.switch_class_name_boxer);
+            txtInpLayKickSpeed.setVisibility(View.GONE);
+            txtInpLayKickPower.setVisibility(View.GONE);
         }
     }
 }

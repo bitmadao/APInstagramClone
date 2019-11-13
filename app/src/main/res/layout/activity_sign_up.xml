@@ -20,6 +20,25 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.8" />
 
+    <TextView
+        android:id="@+id/txtHelloWorld"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Switch
+        android:id="@+id/swClass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/switch_class_name_boxer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtHelloWorld"
+        tools:checked="false" />
+
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -32,6 +51,7 @@
         app:layout_constraintTop_toBottomOf="@+id/swClass">
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtInpLayName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="8dp"
@@ -47,11 +67,13 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtInpLayPunchSpeed"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:orientation="vertical">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtInpPunchSpeed"
                 android:layout_width="match_parent"
@@ -61,11 +83,13 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtInpLayPunchPower"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:orientation="vertical">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtInpPunchPower"
                 android:layout_width="match_parent"
@@ -75,11 +99,13 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtInpLayKickSpeed"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:orientation="vertical">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtInpKickSpeed"
                 android:layout_width="match_parent"
@@ -89,11 +115,13 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtInpLayKickPower"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:orientation="vertical">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtInpKickPower"
                 android:layout_width="match_parent"
@@ -102,25 +130,7 @@
                 android:hint="@string/hint_input_kick_power" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:orientation="vertical">
-
-        </com.google.android.material.textfield.TextInputLayout>
-
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/txtHelloWorld"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnBoxer"
@@ -142,14 +152,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/glvMiddle"
         app:layout_constraintTop_toTopOf="@+id/glhButtons" />
-
-    <Switch
-        android:id="@+id/swClass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/switch_class_name_boxer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtHelloWorld" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
