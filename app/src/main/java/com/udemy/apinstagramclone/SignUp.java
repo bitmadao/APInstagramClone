@@ -11,13 +11,15 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.SaveCallback;
 
-public class SignUp extends AppCompatActivity implements View.OnClickListener, Switch.OnCheckedChangeListener{
+public class SignUp extends AppCompatActivity
+        implements
+        View.OnClickListener,
+        Switch.OnCheckedChangeListener{
 
     private Button btnRegister;
     private Switch swClass;
