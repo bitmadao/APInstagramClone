@@ -12,6 +12,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
@@ -20,17 +21,22 @@ import com.parse.ParseQuery;
 import com.parse.SaveCallback;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
+import java.util.List;
+
 public class SignUp extends AppCompatActivity
         implements
         View.OnClickListener,
         Switch.OnCheckedChangeListener{
 
     private Button btnRegister;
+    private Button btnGetAll;
     private Switch swClass;
     private TextView txtGetData;
 
     private TextInputEditText txtInpName, txtInpPunchSpeed, txtInpPunchPower, txtInpKickSpeed, txtInpKickPower;
     private LinearLayout lLaySignUpFormKickBoxerSpecific;
+
+    private StringBuilder allFoundAthletes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +54,7 @@ public class SignUp extends AppCompatActivity
         txtInpKickPower = findViewById(R.id.txtInpKickPower);
 
         btnRegister = findViewById(R.id.btnRegister);
+        btnGetAll = findViewById(R.id.btnGetAll);
         swClass = findViewById(R.id.swClass);
         txtGetData = findViewById(R.id.txtGetData);
 
@@ -56,6 +63,7 @@ public class SignUp extends AppCompatActivity
         lLaySignUpFormKickBoxerSpecific.setVisibility(View.GONE);
 
         btnRegister.setOnClickListener(SignUp.this);
+        btnGetAll.setOnClickListener(SignUp.this);
         txtGetData.setOnClickListener(SignUp.this);
         swClass.setOnCheckedChangeListener(SignUp.this);
 
@@ -185,6 +193,69 @@ public class SignUp extends AppCompatActivity
         }
     }
 
+    public void btnGetAllTapped(){
+        ParseQuery<ParseObject> queryAll;
+
+        allFoundAthletes = new StringBuilder();
+        allFoundAthletes.append("Found ");
+
+        if(!swClass.isChecked()){
+            //Boxer block
+            queryAll = ParseQuery.getQuery("Boxer");
+            allFoundAthletes.append("Boxers");
+
+        } else {
+            //KickBoxer block
+
+            queryAll = ParseQuery.getQuery("KickBoxer");
+            allFoundAthletes.append("KickBoxers");
+        }
+
+        allFoundAthletes.append(": ");
+
+        queryAll.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if(e == null) {
+                    if (objects.size() > 0) {
+                        int i = 0;
+                        for (ParseObject foundAthlete: objects) {
+                            allFoundAthletes.append(foundAthlete.get("name"));
+                            if(i < objects.size()) {
+                                allFoundAthletes.append(", ");
+                            } else {
+                                allFoundAthletes.append(".");
+                            }
+
+                            i ++;
+                        }
+
+                        FancyToast.makeText(
+                                SignUp.this,
+                                "Found " + objects.size() + " elements.\n" +
+                                allFoundAthletes.toString(),
+                                FancyToast.LENGTH_LONG,
+                                FancyToast.SUCCESS,
+                                false
+                        ).show();
+
+                    } else{
+                        FancyToast.makeText(
+                            SignUp.this,
+                            e.getMessage(),
+                            FancyToast.LENGTH_LONG,
+                            FancyToast.ERROR,
+                            false
+                        ).show();
+                    }
+
+                }
+            }
+        });
+
+
+    }
+
     @Override
     public void onClick(View v) {
 
@@ -197,6 +268,9 @@ public class SignUp extends AppCompatActivity
                 txtGetDataTapped();
                 break;
 
+            case R.id.btnGetAll:
+                btnGetAllTapped();
+
         }
     }
 
@@ -206,10 +280,13 @@ public class SignUp extends AppCompatActivity
             buttonView.setText(R.string.switch_class_name_kickboxer);
             lLaySignUpFormKickBoxerSpecific.setVisibility(View.VISIBLE);
             btnRegister.setText(R.string.btn_register_kickboxer);
+            btnGetAll.setText(R.string.btn_get_all_kickboxer);
+
         } else {
             buttonView.setText(R.string.switch_class_name_boxer);
             lLaySignUpFormKickBoxerSpecific.setVisibility(View.GONE);
             btnRegister.setText(R.string.btn_register_boxer);
+            btnGetAll.setText(R.string.btn_get_all_boxer);
         }
     }
 }
