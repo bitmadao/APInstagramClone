@@ -1,6 +1,7 @@
 package com.udemy.apinstagramclone;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.parse.FindCallback;
 import com.parse.Parse;
@@ -30,7 +31,12 @@ public class App extends Application {
                 new FindCallback<ParseObject>() {
                                                @Override
                                                public void done(List<ParseObject> objects, ParseException e) {
+                                                   Log.i("TurdBowl", "Performing punchbowl check.");
                                                    if(e == null && objects.size() > 1) {
+                                                       Log.i("TurdBowl",
+                                                               "Alert! there is a turd in the punchbowl!\nInstallation count is " +
+                                                               objects.size()
+                                                       );
                                                        FancyToast.makeText(getApplicationContext(),
                                                                "Alert! there is a turd in the punchbowl!\nInstallation count is " +
                                                                        objects.size()
@@ -39,7 +45,13 @@ public class App extends Application {
                                                                FancyToast.WARNING,
                                                                true
                                                        ).show();
+                                                   } else if (e != null){
+                                                       Log.i("TurdBowl", e.getMessage());
+                                                   } else {
+                                                       Log.i("TurdBowl", "Nothing to report. objects.size(): " + objects.size());
                                                    }
+
+                                                   Log.i("TurdBowl", "End of punchbowl check!");
 
                                                }
                                            }

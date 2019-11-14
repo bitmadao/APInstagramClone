@@ -27,8 +27,8 @@ public class SignUp extends AppCompatActivity
         View.OnClickListener,
         Switch.OnCheckedChangeListener{
 
-    private Button btnRegister;
-    private Button btnGetAll;
+    private Button btnRegister, btnGetAll, btnNextActivity;
+
     private Switch swClass;
     private TextView txtGetData;
 
@@ -54,6 +54,7 @@ public class SignUp extends AppCompatActivity
 
         btnRegister = findViewById(R.id.btnRegister);
         btnGetAll = findViewById(R.id.btnGetAll);
+        btnNextActivity = findViewById(R.id.btnNextActivity);
         swClass = findViewById(R.id.swClass);
         txtGetData = findViewById(R.id.txtGetData);
 
@@ -63,7 +64,26 @@ public class SignUp extends AppCompatActivity
 
         btnRegister.setOnClickListener(SignUp.this);
         btnGetAll.setOnClickListener(SignUp.this);
+        btnNextActivity.setOnClickListener(SignUp.this);
         swClass.setOnCheckedChangeListener(SignUp.this);
+
+        ParseQuery<ParseObject> myQuery = ParseQuery.getQuery("KickBoxer");
+        myQuery.whereGreaterThanOrEqualTo("punch_power",200).setLimit(2);
+
+
+        myQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if(e == null && objects.size() > 0){
+                    String myString = "";
+                    for (ParseObject object: objects){
+                        myString += object.get("name") + "\n";
+                    }
+                    txtGetData.setTextSize(14f);
+                    txtGetData.setText(myString);
+                }
+            }
+        });
 
     }
 
@@ -250,6 +270,10 @@ public class SignUp extends AppCompatActivity
 
     }
 
+    public void btnNextActivityTapped(){
+
+    }
+
     @Override
     public void onClick(View v) {
 
@@ -260,6 +284,10 @@ public class SignUp extends AppCompatActivity
 
             case R.id.btnGetAll:
                 btnGetAllTapped();
+                break;
+
+            case R.id.btnNextActivity:
+                btnNextActivityTapped();
 
         }
     }
