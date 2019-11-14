@@ -1,8 +1,16 @@
 package com.udemy.apinstagramclone;
 
 import android.app.Application;
+import android.widget.Toast;
 
+import com.parse.FindCallback;
 import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.shashank.sony.fancytoastlib.FancyToast;
+
+import java.util.List;
 
 public class App extends Application {
     @Override
@@ -16,5 +24,27 @@ public class App extends Application {
                 .build()
 
         );
+        
+        ParseQuery<ParseObject> installationCount = ParseQuery.getQuery("Installation");
+
+        installationCount.findInBackground(
+                new FindCallback<ParseObject>() {
+                                               @Override
+                                               public void done(List<ParseObject> objects, ParseException e) {
+                                                   if(e == null && objects.size() > 1) {
+                                                       FancyToast.makeText(getApplicationContext(),
+                                                               "Alert! there is a turd in the punchbowl!\nInstallation count is " +
+                                                                       objects.size()
+                                                               ,
+                                                               FancyToast.LENGTH_LONG,
+                                                               FancyToast.WARNING,
+                                                               true
+                                                       ).show();
+                                                   }
+
+                                               }
+                                           }
+        );
+
     }
 }
