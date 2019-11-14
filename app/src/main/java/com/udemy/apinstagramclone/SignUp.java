@@ -195,6 +195,8 @@ public class SignUp extends AppCompatActivity
 
     public void btnGetAllTapped(){
         ParseQuery<ParseObject> queryAll;
+        final String athleteAttribute;
+        final String athleteAttributeKey;
 
         allFoundAthletes = new StringBuilder();
         allFoundAthletes.append("Found ");
@@ -203,41 +205,47 @@ public class SignUp extends AppCompatActivity
             //Boxer block
             queryAll = ParseQuery.getQuery("Boxer");
             allFoundAthletes.append("Boxers");
+            athleteAttribute = "punch power ";
+            athleteAttributeKey = "punch_power";
 
         } else {
             //KickBoxer block
 
             queryAll = ParseQuery.getQuery("KickBoxer");
             allFoundAthletes.append("KickBoxers");
+            athleteAttribute = "kick power ";
+            athleteAttributeKey = "kick_power";
         }
 
-        allFoundAthletes.append(": ");
+        allFoundAthletes.append(":\n");
 
         queryAll.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
                 if(e == null) {
                     if (objects.size() > 0) {
-                        int i = 0;
                         for (ParseObject foundAthlete: objects) {
-                            allFoundAthletes.append(foundAthlete.get("name"));
-                            if(i < objects.size()) {
-                                allFoundAthletes.append(", ");
-                            } else {
-                                allFoundAthletes.append(".");
-                            }
-
-                            i ++;
+                            allFoundAthletes
+                                    .append(foundAthlete.get("name"))
+                                    .append(" with ")
+                                    .append(athleteAttribute)
+                                    .append("of ")
+                                    .append(foundAthlete.get(athleteAttributeKey))
+                                    .append("\n");
                         }
+
+                        txtGetData.setTextSize(14f);
+
+                        txtGetData.setText(allFoundAthletes.toString());
 
                         FancyToast.makeText(
                                 SignUp.this,
-                                "Found " + objects.size() + " elements.\n" +
-                                allFoundAthletes.toString(),
+                                "Found " + objects.size() + " elements.",
                                 FancyToast.LENGTH_LONG,
                                 FancyToast.SUCCESS,
                                 false
                         ).show();
+
 
                     } else{
                         FancyToast.makeText(
