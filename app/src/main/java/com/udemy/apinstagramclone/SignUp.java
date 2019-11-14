@@ -3,6 +3,7 @@ package com.udemy.apinstagramclone;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -271,6 +272,9 @@ public class SignUp extends AppCompatActivity
     }
 
     public void btnNextActivityTapped(){
+
+        Intent intent = new Intent(SignUp.this, SignUpLoginActivity.class);
+        startActivity(intent);
 
     }
 
