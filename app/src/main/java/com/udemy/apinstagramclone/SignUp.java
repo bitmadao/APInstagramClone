@@ -2,7 +2,7 @@ package com.udemy.apinstagramclone;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.parse.FindCallback;
-import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParseObject;
@@ -36,7 +35,7 @@ public class SignUp extends AppCompatActivity
     private TextInputEditText txtInpName, txtInpPunchSpeed, txtInpPunchPower, txtInpKickSpeed, txtInpKickPower;
     private LinearLayout lLaySignUpFormKickBoxerSpecific;
 
-    private StringBuilder allFoundAthletes;
+    private StringBuilder allFoundAthletesStringBuilder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +63,6 @@ public class SignUp extends AppCompatActivity
 
         btnRegister.setOnClickListener(SignUp.this);
         btnGetAll.setOnClickListener(SignUp.this);
-        txtGetData.setOnClickListener(SignUp.this);
         swClass.setOnCheckedChangeListener(SignUp.this);
 
     }
@@ -133,26 +131,6 @@ public class SignUp extends AppCompatActivity
 
     }
 
-    public void txtGetDataTapped(){
-        ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("KickBoxer");
-        parseQuery.getInBackground("XpOtBfiEPW", new GetCallback<ParseObject>() {
-            @SuppressLint("DefaultLocale")
-            @Override
-            public void done(ParseObject object, ParseException e) {
-                if(object != null && e == null){
-                    txtGetData.setText(
-                            String.format(
-                                    "Retrieved %s with Kickpower %d",
-                                    object.get("name").toString(),
-                                    object.get("kick_power")
-                            )
-                    );
-                }
-            }
-        }) ;
-    }
-
-
 
     public void btnRegisterTapped(){
         if(txtInpName.getText().toString().isEmpty()){
@@ -198,13 +176,13 @@ public class SignUp extends AppCompatActivity
         final String athleteAttribute;
         final String athleteAttributeKey;
 
-        allFoundAthletes = new StringBuilder();
-        allFoundAthletes.append("Found ");
+        allFoundAthletesStringBuilder = new StringBuilder();
+        allFoundAthletesStringBuilder.append("Found ");
 
         if(!swClass.isChecked()){
             //Boxer block
             queryAll = ParseQuery.getQuery("Boxer");
-            allFoundAthletes.append("Boxers");
+            allFoundAthletesStringBuilder.append("Boxers");
             athleteAttribute = "punch power ";
             athleteAttributeKey = "punch_power";
 
@@ -212,31 +190,39 @@ public class SignUp extends AppCompatActivity
             //KickBoxer block
 
             queryAll = ParseQuery.getQuery("KickBoxer");
-            allFoundAthletes.append("KickBoxers");
+            allFoundAthletesStringBuilder.append("KickBoxers");
             athleteAttribute = "kick power ";
             athleteAttributeKey = "kick_power";
         }
 
-        allFoundAthletes.append(":\n");
+        allFoundAthletesStringBuilder.append(":\n");
 
         queryAll.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
                 if(e == null) {
+                    int i = 0;
                     if (objects.size() > 0) {
+                        
                         for (ParseObject foundAthlete: objects) {
-                            allFoundAthletes
+
+                            allFoundAthletesStringBuilder
                                     .append(foundAthlete.get("name"))
                                     .append(" with ")
                                     .append(athleteAttribute)
                                     .append("of ")
-                                    .append(foundAthlete.get(athleteAttributeKey))
-                                    .append("\n");
+                                    .append(foundAthlete.get(athleteAttributeKey));
+
+                            if(i < (objects.size() -1 )){
+                                allFoundAthletesStringBuilder.append("\n");
+                            }
+
+                            i ++;
                         }
 
                         txtGetData.setTextSize(14f);
 
-                        txtGetData.setText(allFoundAthletes.toString());
+                        txtGetData.setText(allFoundAthletesStringBuilder.toString());
 
                         FancyToast.makeText(
                                 SignUp.this,
@@ -270,10 +256,6 @@ public class SignUp extends AppCompatActivity
         switch (v.getId()){
             case R.id.btnRegister:
                 btnRegisterTapped();
-                break;
-
-            case R.id.txtGetData:
-                txtGetDataTapped();
                 break;
 
             case R.id.btnGetAll:
