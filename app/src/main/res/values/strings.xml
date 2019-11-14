@@ -17,6 +17,10 @@
     <string name="hint_input_kick_power">Enter kick speed (default 300)</string>
     <string name="btn_register_boxer">Register Boxer</string>
     <string name="btn_register_kickboxer">Register KickBoxer</string>
+    <string name="btn_get_all_boxer">Get all Boxers</string>
+    <string name="btn_get_all_kickboxer">Get all KickBoxers</string>
+
+    <string name="txt_get_data">Get data from server.</string>
 
 
 </resources>

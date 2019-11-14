@@ -2,17 +2,21 @@ package com.udemy.apinstagramclone;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.SaveCallback;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
@@ -23,6 +27,7 @@ public class SignUp extends AppCompatActivity
 
     private Button btnRegister;
     private Switch swClass;
+    private TextView txtGetData;
 
     private TextInputEditText txtInpName, txtInpPunchSpeed, txtInpPunchPower, txtInpKickSpeed, txtInpKickPower;
     private LinearLayout lLaySignUpFormKickBoxerSpecific;
@@ -44,12 +49,14 @@ public class SignUp extends AppCompatActivity
 
         btnRegister = findViewById(R.id.btnRegister);
         swClass = findViewById(R.id.swClass);
+        txtGetData = findViewById(R.id.txtGetData);
 
         lLaySignUpFormKickBoxerSpecific = findViewById(R.id.lLaySignUpFormKickBoxerSpecific);
 
         lLaySignUpFormKickBoxerSpecific.setVisibility(View.GONE);
 
         btnRegister.setOnClickListener(SignUp.this);
+        txtGetData.setOnClickListener(SignUp.this);
         swClass.setOnCheckedChangeListener(SignUp.this);
 
     }
@@ -118,6 +125,27 @@ public class SignUp extends AppCompatActivity
 
     }
 
+    public void txtGetDataTapped(){
+        ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("KickBoxer");
+        parseQuery.getInBackground("XpOtBfiEPW", new GetCallback<ParseObject>() {
+            @SuppressLint("DefaultLocale")
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                if(object != null && e == null){
+                    txtGetData.setText(
+                            String.format(
+                                    "Retrieved %s with Kickpower %d",
+                                    object.get("name").toString(),
+                                    object.get("kick_power")
+                            )
+                    );
+                }
+            }
+        }) ;
+    }
+
+
+
     public void btnRegisterTapped(){
         if(txtInpName.getText().toString().isEmpty()){
             FancyToast.makeText(SignUp.this, "We need at least a name to register..", FancyToast.LENGTH_LONG,FancyToast.INFO,false ).show();
@@ -164,6 +192,11 @@ public class SignUp extends AppCompatActivity
             case R.id.btnRegister:
                 btnRegisterTapped();
                 break;
+
+            case R.id.txtGetData:
+                txtGetDataTapped();
+                break;
+
         }
     }
 

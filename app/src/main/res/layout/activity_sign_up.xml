@@ -13,13 +13,6 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/glhButtons"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.8" />
-
     <TextView
         android:id="@+id/txtHelloWorld"
         android:layout_width="wrap_content"
@@ -150,6 +143,13 @@
 
     </LinearLayout>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glhButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.52" />
+
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="wrap_content"
@@ -158,5 +158,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/glhButtons" />
+
+    <TextView
+        android:id="@+id/txtGetData"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/txt_get_data"
+        android:textColor="@color/colorAccent"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
