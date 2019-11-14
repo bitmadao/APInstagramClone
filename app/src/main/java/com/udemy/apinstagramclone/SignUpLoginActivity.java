@@ -5,11 +5,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
@@ -113,6 +115,41 @@ public class SignUpLoginActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void btnSignInTapped(){
+
+        ParseUser.logInInBackground(
+                edtSignInUserName.getText().toString(),
+                edtSignInPassword.getText().toString(),
+                new LogInCallback() {
+                    @Override
+                    public void done(ParseUser user, ParseException e) {
+                        if(user != null && e == null){
+                            FancyToast.makeText(
+                                    SignUpLoginActivity.this,
+                                    "Sign In successful! :)",
+                                    FancyToast.LENGTH_LONG,
+                                    FancyToast.SUCCESS,
+                                    false)
+                                .show();
+                        } else if (e != null) {
+                            FancyToast.makeText(
+                                    SignUpLoginActivity.this,
+                                    e.getMessage() + " :(",
+                                    FancyToast.LENGTH_LONG,
+                                    FancyToast.ERROR,
+                                    false)
+                                .show();
+
+                        } else {
+                            FancyToast.makeText(SignUpLoginActivity.this,
+                                    "No user with this username/password combination... o_O",
+                                    FancyToast.LENGTH_LONG,
+                                    FancyToast.CONFUSING,
+                                    false)
+                                .show();
+                        }
+
+                    }
+                });
 
     }
     @Override
