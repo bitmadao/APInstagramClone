@@ -23,7 +23,7 @@ import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.util.List;
 
-public class SignUp extends AppCompatActivity
+public class SignUpActivity extends AppCompatActivity
         implements
         View.OnClickListener,
         Switch.OnCheckedChangeListener{
@@ -63,10 +63,10 @@ public class SignUp extends AppCompatActivity
 
         lLaySignUpFormKickBoxerSpecific.setVisibility(View.GONE);
 
-        btnRegister.setOnClickListener(SignUp.this);
-        btnGetAll.setOnClickListener(SignUp.this);
-        btnNextActivity.setOnClickListener(SignUp.this);
-        swClass.setOnCheckedChangeListener(SignUp.this);
+        btnRegister.setOnClickListener(SignUpActivity.this);
+        btnGetAll.setOnClickListener(SignUpActivity.this);
+        btnNextActivity.setOnClickListener(SignUpActivity.this);
+        swClass.setOnCheckedChangeListener(SignUpActivity.this);
 
         ParseQuery<ParseObject> myQuery = ParseQuery.getQuery("KickBoxer");
         myQuery.whereGreaterThanOrEqualTo("punch_power",200).setLimit(2);
@@ -100,7 +100,7 @@ public class SignUp extends AppCompatActivity
             public void done(ParseException e) {
                 if(e == null){
                     FancyToast.makeText(
-                            SignUp.this,
+                            SignUpActivity.this,
                             boxer.get("name") +" object saved successfully! (Boxer)",
                             FancyToast.LENGTH_LONG,
                             FancyToast.SUCCESS,
@@ -108,7 +108,7 @@ public class SignUp extends AppCompatActivity
                     ).show();
                 } else {
                     FancyToast.makeText(
-                            SignUp.this,
+                            SignUpActivity.this,
                             e.toString(),
                             FancyToast.LENGTH_LONG,
                             FancyToast.ERROR,
@@ -133,14 +133,14 @@ public class SignUp extends AppCompatActivity
             public void done(ParseException e) {
                 if(e == null){
                     FancyToast.makeText(
-                            SignUp.this,
+                            SignUpActivity.this,
                             kickBoxer.get("name") +" object saved successfully! (KickBoxer)",
                             FancyToast.LENGTH_LONG,FancyToast.SUCCESS,
                             false
                     ).show();
                 } else {
                     FancyToast.makeText(
-                            SignUp.this,
+                            SignUpActivity.this,
                             e.toString(),
                             FancyToast.LENGTH_LONG,
                             FancyToast.ERROR,
@@ -155,7 +155,7 @@ public class SignUp extends AppCompatActivity
 
     public void btnRegisterTapped(){
         if(txtInpName.getText().toString().isEmpty()){
-            FancyToast.makeText(SignUp.this, "We need at least a name to register..", FancyToast.LENGTH_LONG,FancyToast.INFO,false ).show();
+            FancyToast.makeText(SignUpActivity.this, "We need at least a name to register..", FancyToast.LENGTH_LONG,FancyToast.INFO,false ).show();
         } else {
             String name = txtInpName.getText().toString();
             int punchSpeed = 2000;
@@ -246,7 +246,7 @@ public class SignUp extends AppCompatActivity
                         txtGetData.setText(allFoundAthletesStringBuilder.toString());
 
                         FancyToast.makeText(
-                                SignUp.this,
+                                SignUpActivity.this,
                                 "Found " + objects.size() + " elements.",
                                 FancyToast.LENGTH_LONG,
                                 FancyToast.SUCCESS,
@@ -256,7 +256,7 @@ public class SignUp extends AppCompatActivity
 
                     } else{
                         FancyToast.makeText(
-                            SignUp.this,
+                            SignUpActivity.this,
                             e.getMessage(),
                             FancyToast.LENGTH_LONG,
                             FancyToast.ERROR,
@@ -273,7 +273,7 @@ public class SignUp extends AppCompatActivity
 
     public void btnNextActivityTapped(){
 
-        Intent intent = new Intent(SignUp.this, SignUpLoginActivity.class);
+        Intent intent = new Intent(SignUpActivity.this, SignUpLoginActivity.class);
         startActivity(intent);
 
     }
