@@ -1,7 +1,6 @@
 package com.udemy.apinstagramclone;
 
 import android.app.Application;
-import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.Parse;
@@ -24,7 +23,7 @@ public class App extends Application {
                 .build()
 
         );
-        
+
         ParseQuery<ParseObject> installationCount = ParseQuery.getQuery("Installation");
 
         installationCount.findInBackground(
