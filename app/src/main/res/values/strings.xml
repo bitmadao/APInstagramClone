@@ -7,7 +7,7 @@
     <string name="back4app_app_id">71dhWoKUMOeo9nZzm3ng2ReL1u5Owezm792FkwKt</string>
     <string name="back4app_client_key">OLwQh6RUgLdALx8XGLnSydGG9s5bZXP0Ak8efBcr</string>
 
-    <!-- Sign-up form hints and strings-->
+    <!-- SignUpActivity -->
     <string name="switch_class_name_boxer">Boxer</string>
     <string name="switch_class_name_kickboxer">Kickboxer</string>
     <string name="hint_input_name">Enter name</string>
@@ -22,6 +22,19 @@
     <string name="btn_switch_to_another_activity">Switch to another activity</string>
 
     <string name="txt_get_data">Get data from server.</string>
+
+    <!-- SignUpLoginActivity -->
+    <string name="hint_input_choose_user_name">Choose Username</string>
+    <string name="hint_input_choose_user_name_insist">You must choose a Username</string>
+    <string name="hint_input_choose_password">Choose Password</string>
+    <string name="hint_input_confirm_password">Confirm Password</string>
+    <string name="hint_input_confirm_password_insist">Must be the same as above Password</string>
+    <string name="hint_input_enter_user_name">Enter Username</string>
+    <string name="hint_input_enter_password">Enter Password</string>
+    <string name="btn_sign_up">Sign up</string>
+    <string name="btn_sign_in">Sign in</string>
+    <string name="txt_already_signed_up_true">Already have an account?</string>
+    <string name="txt_already_signed_up_false">I need to create an account!</string>
 
 
 </resources>
