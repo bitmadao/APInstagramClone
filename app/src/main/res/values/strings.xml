@@ -8,20 +8,15 @@
     <string name="back4app_client_key">OLwQh6RUgLdALx8XGLnSydGG9s5bZXP0Ak8efBcr</string>
 
     <!-- SignUpActivity -->
-    <string name="switch_class_name_boxer">Boxer</string>
-    <string name="switch_class_name_kickboxer">Kickboxer</string>
-    <string name="hint_input_name">Enter name</string>
-    <string name="hint_input_punch_speed">Enter punch speed (default 2000)</string>
-    <string name="hint_input_punch_power">Enter punch power (default 200)</string>
-    <string name="hint_input_kick_speed">Enter kick speed (default 3000)</string>
-    <string name="hint_input_kick_power">Enter kick speed (default 300)</string>
-    <string name="btn_register_boxer">Register Boxer</string>
-    <string name="btn_register_kickboxer">Register KickBoxer</string>
-    <string name="btn_get_all_boxer">Get all Boxers</string>
-    <string name="btn_get_all_kickboxer">Get all KickBoxers</string>
-    <string name="btn_switch_to_another_activity">Switch to another activity</string>
-
-    <string name="txt_get_data">Get data from server.</string>
+    <string name="hint_sign_up_email">Please enter an email-address...</string>
+    <string name="hint_sign_up_username">Please enter a username...</string>
+    <string name="hint_sign_up_password">Please enter a password...</string>
+    <string name="hint_sign_up_password_confirm">Please confirm password...</string>
+    <string name="btn_sign_up_sign_up">Sign Up</string>
+    <string name="btn_sign_up_already_signed_up">I have an account!</string>
+    <string name="toast_sign_up_need_email">You must enter an email address.</string>
+    <string name="toast_sign_up_need_username">You must enter a username.</string>
+    <string name="toast_sign_up_need_password">You must enter a password and confirm it.</string>
 
     <!-- SignUpLoginActivity -->
     <string name="hint_input_choose_user_name">Choose Username</string>
