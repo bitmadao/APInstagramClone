@@ -57,19 +57,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if(edtLoginEmail.getText().toString().isEmpty()){
             objection = true;
-            objectionString.append("").append("\n");
+            objectionString.append(getString(R.string.toast_login_need_username)).append("\n");
 
         }
 
         if(edtLoginPassword.getText().toString().isEmpty()){
             objection = true;
-            objectionString.append("");
+            objectionString.append(getString(R.string.toast_login_need_password));
         }
 
         if(objection){
             FancyToast.makeText(
                     LoginActivity.this,
-                    "",
+                    objectionString.toString(),
                     FancyToast.LENGTH_LONG,
                     FancyToast.INFO,
                     false)

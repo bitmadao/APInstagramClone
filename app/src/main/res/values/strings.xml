@@ -29,6 +29,8 @@
     <string name="btn_login_need_account">I need an account!</string>
     <string name="toast_login_login_success">%s logged in successfully!</string>
     <string name="toast_login_objection_stringbuilder">Ooops, forgot something?:\n</string>
+    <string name="toast_login_need_username">Username field is empty.</string>
+    <string name="toast_login_need_password">Password field is empty.</string>
 
     <!-- WelcomeActivity -->
     <string name="activity_welcome_title">Welcome</string>
