@@ -132,6 +132,8 @@ public class SignUpLoginActivity extends AppCompatActivity implements View.OnCli
                                     false)
                                 .show();
 
+                            edtSignInUserName.setText("");
+                            edtSignInPassword.setText("");
                             Intent intent = new Intent(SignUpLoginActivity.this,WelcomeActivity.class);
                             startActivity(intent);
                         } else if (e != null) {
