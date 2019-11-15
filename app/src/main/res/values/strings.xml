@@ -30,19 +30,6 @@
     <string name="toast_login_login_success">%s logged in successfully!</string>
     <string name="toast_login_objection_stringbuilder">Ooops, forgot something?:\n</string>
 
-    <!-- SignUpLoginActivity -->
-    <string name="hint_input_choose_user_name">Choose Username</string>
-    <string name="hint_input_choose_user_name_insist">You must choose a Username</string>
-    <string name="hint_input_choose_password">Choose Password</string>
-    <string name="hint_input_confirm_password">Confirm Password</string>
-    <string name="hint_input_confirm_password_insist">Must be the same as above Password</string>
-    <string name="hint_input_enter_user_name">Enter Username</string>
-    <string name="hint_input_enter_password">Enter Password</string>
-    <string name="btn_sign_up">Sign up</string>
-    <string name="btn_sign_in">Sign in</string>
-    <string name="txt_already_signed_up_true">Already have an account?</string>
-    <string name="txt_already_signed_up_false">I need to create an account!</string>
-
     <!-- WelcomeActivity -->
     <string name="activity_welcome_title">Welcome</string>
 
