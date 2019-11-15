@@ -55,8 +55,7 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
                             FancyToast.SUCCESS,
                             false)
                             .show();
-                    Intent intent = new Intent(WelcomeActivity.this,SignUpLoginActivity.class);
-                    startActivity(intent);
+                    finish();
                 } else {
                     FancyToast.makeText(
                             WelcomeActivity.this,
