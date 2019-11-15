@@ -3,9 +3,11 @@ package com.udemy.apinstagramclone;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -17,7 +19,7 @@ import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
-public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
+public class SignUpActivity extends AppCompatActivity implements View.OnClickListener, View.OnKeyListener{
 
     private TextInputEditText edtSignUpEmail, edtSignUpUsername, edtSignUpPassword, edtSignUpPasswordConfirm;
 
@@ -40,6 +42,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         btnSignUpSignUp = findViewById(R.id.btnSignUpSignUp);
         btnSignUpAlreadySignedUp = findViewById(R.id.btnSignUpAlreadySignedUp);
 
+        edtSignUpPasswordConfirm.setOnKeyListener(SignUpActivity.this);
         btnSignUpSignUp.setOnClickListener(SignUpActivity.this);
         btnSignUpAlreadySignedUp.setOnClickListener(SignUpActivity.this);
 
@@ -111,6 +114,14 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         appUser.setUsername(edtSignUpUsername.getText().toString());
         appUser.setPassword(edtSignUpPassword.getText().toString());
 
+        final ProgressDialog progressDialog = new ProgressDialog(SignUpActivity.this);
+        progressDialog.setMessage(
+                String.format(
+                        getString(R.string.progress_sign_up_sign_up),
+                        edtSignUpUsername.getText().toString())
+            );
+        progressDialog.show();
+
         appUser.signUpInBackground(new SignUpCallback() {
             @Override
             public void done(ParseException e) {
@@ -123,6 +134,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                             false)
                         .show();
 
+
                 } else {
                     FancyToast.makeText(
                             SignUpActivity.this,
@@ -132,8 +144,11 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                             true)
                         .show();
                 }
+                progressDialog.dismiss();
             }
         });
+
+
     }
 
     private void btnSignUpAlreadySignedUp() {
@@ -143,7 +158,14 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 
+    @Override
+    public boolean onKey(View v, int keyCode, KeyEvent event) {
 
+        if(keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN){
 
+            onClick(btnSignUpSignUp);
+        }
 
+        return false;
+    }
 } // class ends here

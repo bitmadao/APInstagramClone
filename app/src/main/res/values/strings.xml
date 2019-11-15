@@ -20,6 +20,7 @@
     <string name="toast_sign_up_need_password">You must enter a password and confirm it.</string>
     <string name="toast_sign_up_objection_stringbuilder">Ooops, please have a look at the following:\n</string>
     <string name="toast_sign_up_success">Successfully created user %s</string>
+    <string name="progress_sign_up_sign_up">Creating account for %s\.\.\.</string>
 
     <!-- LoginActivity -->
     <string name="activity_login_title">Login</string>

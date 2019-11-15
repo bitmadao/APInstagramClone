@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -15,7 +16,7 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, View.OnKeyListener{
 
     private TextInputEditText edtLoginEmail, edtLoginPassword;
 
@@ -33,6 +34,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnLoginLogin = findViewById(R.id.btnLoginLogin);
         btnLoginNeedAccount = findViewById(R.id.btnLoginNeedAccount);
 
+        edtLoginPassword.setOnKeyListener(LoginActivity.this);
         btnLoginLogin.setOnClickListener(LoginActivity.this);
         btnLoginNeedAccount.setOnClickListener(LoginActivity.this);
 
@@ -128,4 +130,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }); // end of ParseUser.loginInBackground()
 
     } // end of btnLoginLoginTapped()
+
+    @Override
+    public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+        if(keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN){
+            onClick(btnLoginLogin);
+        }
+
+        return false;
+    }
 } // end of class
