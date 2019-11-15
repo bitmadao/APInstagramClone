@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.parse.LogInCallback;
+import com.parse.LogOutCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.shashank.sony.fancytoastlib.FancyToast;
@@ -33,6 +35,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         btnLoginLogin.setOnClickListener(LoginActivity.this);
         btnLoginNeedAccount.setOnClickListener(LoginActivity.this);
+
+        if(ParseUser.getCurrentUser() != null){
+            ParseUser.logOutInBackground(new LogOutCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if(e == null){
+                        Log.i("logoutTag","A user was logged out");
+                    } else {
+                        Log.i("logoutTag", e.getMessage());
+                    }
+                }
+            });
+        }
 
 
     }
@@ -110,6 +125,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
 
             }
-        });
+        }); // end of ParseUser.loginInBackground()
+
     } // end of btnLoginLoginTapped()
 } // end of class
