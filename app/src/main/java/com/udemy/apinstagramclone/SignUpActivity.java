@@ -11,9 +11,7 @@ import android.widget.Button;
 import com.google.android.material.textfield.TextInputEditText;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
@@ -29,10 +27,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        edtSignUpEmail = findViewById(R.id.signUpEmail);
-        edtSignUpUsername = findViewById(R.id.signUpUsername);
-        edtSignUpPassword = findViewById(R.id.signUpPassword);
-        edtSignUpPasswordConfirm = findViewById(R.id.signUpPasswordConfirm);
+        edtSignUpEmail = findViewById(R.id.edtSignUpEmail);
+        edtSignUpUsername = findViewById(R.id.edtSignUpUsername);
+        edtSignUpPassword = findViewById(R.id.edtSignUpPassword);
+        edtSignUpPasswordConfirm = findViewById(R.id.edtSignUpPasswordConfirm);
 
         btnSignUpSignUp = findViewById(R.id.btnSignUpSignUp);
         btnSignUpAlreadySignedUp = findViewById(R.id.btnSignUpAlreadySignedUp);

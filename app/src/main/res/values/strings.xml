@@ -18,6 +18,12 @@
     <string name="toast_sign_up_need_username">You must enter a username.</string>
     <string name="toast_sign_up_need_password">You must enter a password and confirm it.</string>
 
+    <!-- LoginActivity -->
+    <string name="hint_login_email">Enter account email-address...</string>
+    <string name="hint_login_password">Enter account password...</string>
+    <string name="btn_login_login">Login</string>
+    <string name="btn_login_need_account">I need an account!</string>
+
     <!-- SignUpLoginActivity -->
     <string name="hint_input_choose_user_name">Choose Username</string>
     <string name="hint_input_choose_user_name_insist">You must choose a Username</string>
