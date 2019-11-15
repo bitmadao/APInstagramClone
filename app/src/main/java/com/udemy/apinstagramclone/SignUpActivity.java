@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.parse.LogOutCallback;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParseUser;
@@ -40,6 +42,19 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         btnSignUpSignUp.setOnClickListener(SignUpActivity.this);
         btnSignUpAlreadySignedUp.setOnClickListener(SignUpActivity.this);
+
+        if(ParseUser.getCurrentUser() != null){
+            ParseUser.logOutInBackground(new LogOutCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if(e == null){
+                        Log.i("logoutTag","A user was logged out");
+                    } else {
+                        Log.i("logoutTag", e.getMessage());
+                    }
+                }
+            });
+        }
 
     }
 
