@@ -21,6 +21,7 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+        this.setTitle(R.string.activity_welcome_title);
 
         TextView txtWelcome = findViewById(R.id.txtWelcome);
         btnLogOutWelcome = findViewById(R.id.btnLogOutWelcome);

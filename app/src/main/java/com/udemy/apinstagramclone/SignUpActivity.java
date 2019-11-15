@@ -25,6 +25,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        this.setTitle(R.string.activity_sign_up_title);
 
         // Save the current Installation to Back4App
         ParseInstallation.getCurrentInstallation().saveInBackground();
@@ -42,7 +43,20 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
+    @Override
+    public void onClick(View v) {
 
+        switch (v.getId()){
+
+            case R.id.btnSignUpSignUp:
+                btnSignUpSignUpTapped();
+                break;
+
+            case R.id.btnSignUpAlreadySignedUp:
+                btnSignUpAlreadySignedUp();
+                break;
+        }
+    }
 
     private void btnSignUpSignUpTapped() {
         boolean objection = false;
@@ -114,22 +128,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 
-    @Override
-    public void onClick(View v) {
 
-        switch (v.getId()){
-
-            case R.id.btnSignUpSignUp:
-
-                btnSignUpSignUpTapped();
-
-                break;
-
-            case R.id.btnSignUpAlreadySignedUp:
-                btnSignUpAlreadySignedUp();
-                break;
-        }
-    }
 
 
 } // class ends here

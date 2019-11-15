@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.parse.LogInCallback;
@@ -24,6 +23,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        this.setTitle(R.string.activity_login_title);
 
         edtLoginEmail = findViewById(R.id.edtLoginEmail);
         edtLoginPassword = findViewById(R.id.edtLoginPassword);
@@ -33,6 +33,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         btnLoginLogin.setOnClickListener(LoginActivity.this);
         btnLoginNeedAccount.setOnClickListener(LoginActivity.this);
+
+
     }
 
     @Override

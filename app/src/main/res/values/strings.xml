@@ -8,6 +8,7 @@
     <string name="back4app_client_key">OLwQh6RUgLdALx8XGLnSydGG9s5bZXP0Ak8efBcr</string>
 
     <!-- SignUpActivity -->
+    <string name="activity_sign_up_title">Sign Up</string>
     <string name="hint_sign_up_email">Please enter an email-address...</string>
     <string name="hint_sign_up_username">Please enter a username...</string>
     <string name="hint_sign_up_password">Please enter a password...</string>
@@ -21,6 +22,7 @@
     <string name="toast_sign_up_success">Successfully created user %s</string>
 
     <!-- LoginActivity -->
+    <string name="activity_login_title">Login</string>
     <string name="hint_login_email">Enter account email-address...</string>
     <string name="hint_login_password">Enter account password...</string>
     <string name="btn_login_login">Login</string>
@@ -40,6 +42,9 @@
     <string name="btn_sign_in">Sign in</string>
     <string name="txt_already_signed_up_true">Already have an account?</string>
     <string name="txt_already_signed_up_false">I need to create an account!</string>
+
+    <!-- WelcomeActivity -->
+    <string name="activity_welcome_title">Welcome</string>
 
 
 </resources>
