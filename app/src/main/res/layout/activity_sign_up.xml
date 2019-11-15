@@ -29,52 +29,64 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="300dp"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:textColorHint="@android:color/white"
+            android:theme="@style/TextLabel">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtSignUpEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_sign_up_email"
+                android:inputType="textEmailAddress"
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="300dp"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:textColorHint="@android:color/white"
+            android:theme="@style/TextLabel">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtSignUpUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_sign_up_username"
+                android:inputType="textPersonName"
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="300dp"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:textColorHint="@android:color/white"
+            android:theme="@style/TextLabel">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtSignUpPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_sign_up_password"
+                android:inputType="textPassword"
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="300dp"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:textColorHint="@android:color/white"
+            android:theme="@style/TextLabel">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtSignUpPasswordConfirm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_sign_up_password_confirm"
+                android:inputType="textPassword"
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -85,6 +97,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:background="@color/design_default_color_primary"
         android:text="@string/btn_sign_up_sign_up"
@@ -99,6 +112,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:background="@android:color/holo_green_light"
         android:text="@string/btn_sign_up_already_signed_up"

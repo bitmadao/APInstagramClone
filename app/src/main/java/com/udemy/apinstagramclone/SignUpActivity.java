@@ -20,12 +20,14 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private TextInputEditText edtSignUpEmail, edtSignUpUsername, edtSignUpPassword, edtSignUpPasswordConfirm;
 
     private Button btnSignUpSignUp, btnSignUpAlreadySignedUp;
-    private StringBuilder allFoundAthletesStringBuilder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
+        // Save the current Installation to Back4App
+        ParseInstallation.getCurrentInstallation().saveInBackground();
 
         edtSignUpEmail = findViewById(R.id.edtSignUpEmail);
         edtSignUpUsername = findViewById(R.id.edtSignUpUsername);
@@ -35,30 +37,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         btnSignUpSignUp = findViewById(R.id.btnSignUpSignUp);
         btnSignUpAlreadySignedUp = findViewById(R.id.btnSignUpAlreadySignedUp);
 
-
-        // Save the current Installation to Back4App
-        ParseInstallation.getCurrentInstallation().saveInBackground();
-
-/*
-        ParseQuery<ParseObject> myQuery = ParseQuery.getQuery("KickBoxer");
-        myQuery.whereGreaterThanOrEqualTo("punch_power",200).setLimit(2);
-
-
-        myQuery.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-                if(e == null && objects.size() > 0){
-                    String myString = "";
-                    for (ParseObject object: objects){
-                        myString += object.get("name") + "\n";
-                    }
-                    txtGetData.setTextSize(14f);
-                    txtGetData.setText(myString);
-                }
-            }
-        });
-
- */
         btnSignUpSignUp.setOnClickListener(SignUpActivity.this);
         btnSignUpAlreadySignedUp.setOnClickListener(SignUpActivity.this);
 
@@ -69,7 +47,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private void btnSignUpSignUpTapped() {
         boolean objection = false;
         StringBuilder objectionString = new StringBuilder();
-        objectionString.append("Oops, have a look at the following:\n");
+        objectionString.append(getString(R.string.toast_sign_up_objection_stringbuilder));
         if(edtSignUpEmail.getText().toString().isEmpty()) {
             objection = true;
             objectionString.append(getString(R.string.toast_sign_up_need_email)).append("\n");
@@ -110,12 +88,11 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 if(e == null) {
                     FancyToast.makeText(
                             SignUpActivity.this,
-                            "Successfully created user " +
-                                    appUser.getUsername(),
+                            String.format(getString(R.string.toast_sign_up_success), appUser.getUsername()),
                             FancyToast.LENGTH_LONG,
                             FancyToast.SUCCESS,
                             false)
-                            .show();
+                        .show();
 
                 } else {
                     FancyToast.makeText(
@@ -124,7 +101,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                             FancyToast.LENGTH_LONG,
                             FancyToast.ERROR,
                             true)
-                            .show();
+                        .show();
                 }
             }
         });
@@ -132,7 +109,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     private void btnSignUpAlreadySignedUp() {
         //do something
-        Intent intent = new Intent(SignUpActivity.this, SignUpLoginActivity.class);
+        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
         startActivity(intent);
     }
 

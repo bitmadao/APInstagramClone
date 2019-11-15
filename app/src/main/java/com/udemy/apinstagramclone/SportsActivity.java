@@ -11,9 +11,32 @@ import com.parse.SaveCallback;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 public class SportsActivity extends AppCompatActivity {
+
+    private StringBuilder allFoundAthletesStringBuilder;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /*
+        ParseQuery<ParseObject> myQuery = ParseQuery.getQuery("KickBoxer");
+        myQuery.whereGreaterThanOrEqualTo("punch_power",200).setLimit(2);
+
+
+        myQuery.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if(e == null && objects.size() > 0){
+                    String myString = "";
+                    for (ParseObject object: objects){
+                        myString += object.get("name") + "\n";
+                    }
+                    txtGetData.setTextSize(14f);
+                    txtGetData.setText(myString);
+                }
+            }
+        });
+
+ */
     }
 
     public void registerBoxer(String name, int punchSpeed, int punchPower){

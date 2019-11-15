@@ -29,25 +29,31 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:textColorHint="@android:color/white"
+            android:theme="@style/TextLabel">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtLoginEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_login_email"
+                android:inputType="textEmailAddress"
                 android:textColorHint="@android:color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:textColorHint="@android:color/white"
+            android:theme="@style/TextLabel">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtLoginPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_login_password"
+                android:inputType="textPassword"
                 android:textColorHint="@android:color/white" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -58,6 +64,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
+        android:layout_marginTop="24dp"
         android:layout_marginRight="32dp"
         android:background="@android:color/holo_orange_light"
         android:text="@string/btn_login_login"
@@ -72,6 +79,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginRight="32dp"
         android:background="@android:color/holo_red_light"
         android:text="@string/btn_login_need_account"

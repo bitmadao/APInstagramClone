@@ -17,12 +17,16 @@
     <string name="toast_sign_up_need_email">You must enter an email address.</string>
     <string name="toast_sign_up_need_username">You must enter a username.</string>
     <string name="toast_sign_up_need_password">You must enter a password and confirm it.</string>
+    <string name="toast_sign_up_objection_stringbuilder">Ooops, please have a look at the following:\n</string>
+    <string name="toast_sign_up_success">Successfully created user %s</string>
 
     <!-- LoginActivity -->
     <string name="hint_login_email">Enter account email-address...</string>
     <string name="hint_login_password">Enter account password...</string>
     <string name="btn_login_login">Login</string>
     <string name="btn_login_need_account">I need an account!</string>
+    <string name="toast_login_login_success">%s logged in successfully!</string>
+    <string name="toast_login_objection_stringbuilder">Ooops, forgot something?:\n</string>
 
     <!-- SignUpLoginActivity -->
     <string name="hint_input_choose_user_name">Choose Username</string>
