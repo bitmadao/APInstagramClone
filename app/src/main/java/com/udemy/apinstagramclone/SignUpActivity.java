@@ -1,6 +1,7 @@
 package com.udemy.apinstagramclone;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 
 import android.app.ProgressDialog;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -21,6 +23,7 @@ import com.shashank.sony.fancytoastlib.FancyToast;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener, View.OnKeyListener{
 
+    private ConstraintLayout rootLayoutSignUpActivity;
     private TextInputEditText edtSignUpEmail, edtSignUpUsername, edtSignUpPassword, edtSignUpPasswordConfirm;
 
     private Button btnSignUpSignUp, btnSignUpAlreadySignedUp;
@@ -30,6 +33,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         this.setTitle(R.string.activity_sign_up_title);
+        rootLayoutSignUpActivity = findViewById(R.id.rootLayoutSignUpActivity);
 
         // Save the current Installation to Back4App
         ParseInstallation.getCurrentInstallation().saveInBackground();
@@ -43,6 +47,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         btnSignUpAlreadySignedUp = findViewById(R.id.btnSignUpAlreadySignedUp);
 
         edtSignUpPasswordConfirm.setOnKeyListener(SignUpActivity.this);
+
+        rootLayoutSignUpActivity.setOnClickListener(SignUpActivity.this);
         btnSignUpSignUp.setOnClickListener(SignUpActivity.this);
         btnSignUpAlreadySignedUp.setOnClickListener(SignUpActivity.this);
 
@@ -66,6 +72,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         switch (v.getId()){
 
+            case R.id.rootLayoutSignUpActivity:
+                rootSignUpActivityLayoutTapped();
+                break;
+
             case R.id.btnSignUpSignUp:
                 btnSignUpSignUpTapped();
                 break;
@@ -73,6 +83,29 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.btnSignUpAlreadySignedUp:
                 btnSignUpAlreadySignedUp();
                 break;
+        }
+    }
+
+    @Override
+    public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+        if(v.getId() == R.id.edtSignUpPasswordConfirm) {
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
+
+                onClick(btnSignUpSignUp);
+
+            }
+        }
+        return false;
+    }
+
+    private void rootSignUpActivityLayoutTapped() {
+
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        try {
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        } catch(Exception e) {
+            Log.i("ErrorTag", e.getMessage());
         }
     }
 
@@ -158,14 +191,5 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 
-    @Override
-    public boolean onKey(View v, int keyCode, KeyEvent event) {
 
-        if(keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN){
-
-            onClick(btnSignUpSignUp);
-        }
-
-        return false;
-    }
 } // class ends here

@@ -1,12 +1,14 @@
 package com.udemy.apinstagramclone;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -18,6 +20,8 @@ import com.shashank.sony.fancytoastlib.FancyToast;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, View.OnKeyListener{
 
+    private ConstraintLayout rootLayoutLoginActivity;
+
     private TextInputEditText edtLoginEmail, edtLoginPassword;
 
     private Button btnLoginLogin, btnLoginNeedAccount;
@@ -27,6 +31,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         this.setTitle(R.string.activity_login_title);
+        rootLayoutLoginActivity = findViewById(R.id.rootLayoutLoginActivity);
 
         edtLoginEmail = findViewById(R.id.edtLoginEmail);
         edtLoginPassword = findViewById(R.id.edtLoginPassword);
@@ -35,6 +40,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnLoginNeedAccount = findViewById(R.id.btnLoginNeedAccount);
 
         edtLoginPassword.setOnKeyListener(LoginActivity.this);
+
+        rootLayoutLoginActivity.setOnClickListener(LoginActivity.this);
         btnLoginLogin.setOnClickListener(LoginActivity.this);
         btnLoginNeedAccount.setOnClickListener(LoginActivity.this);
 
@@ -58,12 +65,42 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
 
         switch(v.getId()){
+
+            case R.id.rootLayoutLoginActivity:
+                rootLayoutLoginActivityTapped();
+                break;
+
             case R.id.btnLoginLogin:
                 btnLoginLoginTapped();
                 break;
+
             case R.id.btnLoginNeedAccount:
                 finish();
                 break;
+        }
+    }
+
+    @Override
+    public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+        if(keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN){
+            onClick(btnLoginLogin);
+        }
+
+        return false;
+    }
+
+    private void rootLayoutLoginActivityTapped(){
+
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        try{
+
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),0);
+
+        } catch(Exception e) {
+
+            e.printStackTrace();
+
         }
     }
 
@@ -131,13 +168,5 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     } // end of btnLoginLoginTapped()
 
-    @Override
-    public boolean onKey(View v, int keyCode, KeyEvent event) {
 
-        if(keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN){
-            onClick(btnLoginLogin);
-        }
-
-        return false;
-    }
 } // end of class
