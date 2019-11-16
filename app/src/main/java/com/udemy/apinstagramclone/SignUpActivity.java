@@ -53,6 +53,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         btnSignUpAlreadySignedUp.setOnClickListener(SignUpActivity.this);
 
         if(ParseUser.getCurrentUser() != null){
+            /*
             ParseUser.logOutInBackground(new LogOutCallback() {
                 @Override
                 public void done(ParseException e) {
@@ -63,6 +64,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     }
                 }
             });
+             */
+            transitionToSocialMediaActivity();
         }
 
     }
@@ -166,7 +169,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                             FancyToast.SUCCESS,
                             false)
                         .show();
-
+                    progressDialog.dismiss();
+                    transitionToSocialMediaActivity();
 
                 } else {
                     FancyToast.makeText(
@@ -176,8 +180,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                             FancyToast.ERROR,
                             true)
                         .show();
+                    progressDialog.dismiss();
                 }
-                progressDialog.dismiss();
+
             }
         });
 
@@ -190,6 +195,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         startActivity(intent);
     }
 
+    private void transitionToSocialMediaActivity(){
 
+        Intent intent = new Intent(SignUpActivity.this,SocialMediaActivity.class);
+        startActivity(intent);
+    }
 
 } // class ends here

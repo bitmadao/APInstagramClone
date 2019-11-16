@@ -33,8 +33,8 @@
     <string name="toast_login_need_username">Username field is empty.</string>
     <string name="toast_login_need_password">Password field is empty.</string>
 
-    <!-- WelcomeActivity -->
-    <string name="activity_welcome_title">Welcome</string>
+    <!-- SocialMediaActivity -->
+    <string name="activity_social_media_title">Social Media!</string>
 
 
 </resources>
