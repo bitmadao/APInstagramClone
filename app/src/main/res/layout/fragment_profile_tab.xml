@@ -7,63 +7,91 @@
     tools:context=".ProfileTab">
 
 
-    <LinearLayout
-        android:layout_width="0dp"
+    <EditText
+        android:id="@+id/edtTabProfileProfileName"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:orientation="vertical"
+        android:ems="10"
+        android:hint="@string/hint_tab_profile_profile_name"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/edtTabProfileProfileName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/hint_tab_profile_profile_name"
-            android:inputType="textPersonName" />
+    <EditText
+        android:id="@+id/edtTabProfileBio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="@string/hint_tab_profile_bio"
+        android:inputType="textShortMessage|none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtTabProfileProfileName" />
 
-        <EditText
-            android:id="@+id/edtTabProfileBio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/hint_tab_profile_bio"
-            android:inputType="textShortMessage|none" />
+    <EditText
+        android:id="@+id/edtTabProfileProfession"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="@string/hint_tab_profile_profession"
+        android:inputType="textShortMessage|none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtTabProfileBio" />
 
-        <EditText
-            android:id="@+id/edtTabProfileProfession"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/hint_tab_profile_profession"
-            android:inputType="textShortMessage|none" />
+    <EditText
+        android:id="@+id/edtTabProfileHobbies"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="@string/hint_tab_profile_hobbies"
+        android:inputType="textShortMessage|none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtTabProfileProfession" />
 
-        <EditText
-            android:id="@+id/edtTabProfileHobbies"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/hint_tab_profile_hobbies"
-            android:inputType="textShortMessage|none" />
+    <EditText
+        android:id="@+id/edtTabProfileSport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="@string/hint_tab_profile_sport"
+        android:inputType="textShortMessage|none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtTabProfileHobbies" />
 
-        <EditText
-            android:id="@+id/edtTabProfileSport"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/hint_tab_profile_sport"
-            android:inputType="textShortMessage|none" />
+    <Button
+        android:id="@+id/btnTabProfileUpdateInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:text="@string/btn_tab_profile_update_info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtTabProfileSport" />
 
-        <Button
-            android:id="@+id/btnTabProfileUpdateInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/btn_tab_profile_update_info" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/btnTabProfileLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="@string/btn_tab_profile_logout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

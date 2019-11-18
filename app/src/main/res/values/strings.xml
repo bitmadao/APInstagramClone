@@ -40,12 +40,20 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- ProfileTab -->
-    <string name="hint_tab_profile_profile_name">Your profile name (required)</string>
+    <string name="hint_tab_profile_profile_name">Your profile name</string>
     <string name="hint_tab_profile_bio">Your bio</string>
     <string name="hint_tab_profile_profession">Your profession</string>
     <string name="hint_tab_profile_hobbies">Your hobbies</string>
     <string name="hint_tab_profile_sport">Your favorite sport</string>
     <string name="btn_tab_profile_update_info">Update Info</string>
+    <string name="btn_tab_profile_update_info_alternate">Edit Info</string>
+    <string name="btn_tab_profile_logout">Logout %s</string>
+    <string name="tab_profile_profile_name_txt_template">Profile name: %s</string>
+    <string name="tab_profile_bio_txt_template">Bio: %s</string>
+    <string name="tab_profile_profession_txt_template">Profession: %s</string>
+    <string name="tab_profile_hobbies_txt_template">Hobbies: %s</string>
+    <string name="tab_profile_sport_name_txt_template">Sport: %s</string>
+    <string name="toast_tab_profile_profile_update_success">Profile update successful!</string>
 
 
 </resources>
