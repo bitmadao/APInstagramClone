@@ -71,6 +71,28 @@ public class ProfileTab extends Fragment implements View.OnClickListener, Gestur
 
         setTabProfileForm();
 
+        try {
+            if (parseUser.get("profileName").toString().isEmpty()) {
+                Log.i("AppTag", "isEmpty Block");
+            } else {
+                Log.i("AppTag", "!isEmpty Block");
+            }
+
+
+        } catch(Exception e) {
+            Log.i("AppTag", e.getMessage());
+        }
+
+        try{
+            if(edtTabProfileProfileName.getText().toString().isEmpty()) {
+                Log.i("AppTag", "EditText is empty.");
+            } else {
+                Log.i("AppTag","EditText is not empty.");
+            }
+        } catch (Exception e) {
+            Log.i("AppTag", e.getMessage());
+        }
+
 
         // must return a view
         return profileTabView;
@@ -93,33 +115,58 @@ public class ProfileTab extends Fragment implements View.OnClickListener, Gestur
 
     private void btnTabProfileUpdateInfoTapped() {
 
-
-
         if(btnTabProfileUpdateInfoShouldUpdate) {
             boolean somethingToUpdate = false;
-            if (!edtTabProfileProfileName.getText().toString().equals(parseUser.get("profileName").toString())) {
+
+            if (!edtTabProfileProfileName.getText().toString().isEmpty() &&
+                    !edtTabProfileProfileName.getText().toString().equals((parseUser.get("profileName") + ""))
+            ) {
 
                 parseUser.put("profileName", edtTabProfileProfileName.getText().toString());
                 somethingToUpdate = true;
 
+            } else if(parseUser.get("profileName") != null && parseUser.get("profileName").toString().length() > 0 &&
+                    edtTabProfileProfileName.getText().toString().isEmpty()) {
+                parseUser.put("profileName", "");
+                somethingToUpdate = true;
             }
 
-            if (!edtTabProfileBio.getText().toString().equals(parseUser.get("profileBio").toString())) {
+            if (!edtTabProfileBio.getText().toString().isEmpty() &&
+                    !edtTabProfileBio.getText().toString().equals(parseUser.get("profileBio") + "")) {
                 parseUser.put("profileBio", edtTabProfileBio.getText().toString());
                 somethingToUpdate = true;
-            }
-
-            if (!edtTabProfileProfession.getText().toString().equals(parseUser.get("profileProfession").toString())) {
-                parseUser.put("profileProfession", edtTabProfileProfession.getText().toString());
-            }
-
-            if (!edtTabProfileHobbies.getText().toString().equals(parseUser.get("profileHobbies").toString())) {
-                parseUser.put("profileHobbies", edtTabProfileHobbies.getText().toString());
+            } else if(parseUser.get("profileName") != null && parseUser.get("profileName").toString().length() > 0 &&
+                    edtTabProfileBio.getText().toString().isEmpty()) {
+                parseUser.put("profileName", "");
                 somethingToUpdate = true;
             }
 
-            if (!edtTabProfileSport.getText().toString().equals(parseUser.get("profileSport").toString())) {
+            if (!edtTabProfileProfession.getText().toString().isEmpty() &&
+                    !edtTabProfileProfession.getText().toString().equals(parseUser.get("profileProfession") + "")) {
+                parseUser.put("profileProfession", edtTabProfileProfession.getText().toString());
+            } else if(parseUser.get("profileProfession") != null && parseUser.get("profileProfession").toString().length() > 0 &&
+                    edtTabProfileProfession.getText().toString().isEmpty()) {
+                parseUser.put("profileProfession", "");
+                somethingToUpdate = true;
+            }
+
+            if (!edtTabProfileHobbies.getText().toString().isEmpty() &&
+                    !edtTabProfileHobbies.getText().toString().equals(parseUser.get("profileHobbies") + "")) {
+                parseUser.put("profileHobbies", edtTabProfileHobbies.getText().toString());
+                somethingToUpdate = true;
+            } else if(parseUser.get("profileHobbies") != null && parseUser.get("profileHobbies").toString().length() > 0 &&
+                    edtTabProfileHobbies.getText().toString().isEmpty()) {
+                parseUser.put("profileHobbies", "");
+                somethingToUpdate = true;
+            }
+
+            if (!edtTabProfileSport.getText().toString().isEmpty() &&
+                    !edtTabProfileSport.getText().toString().equals(parseUser.get("profileSport") + "")) {
                 parseUser.put("profileSport", edtTabProfileSport.getText().toString());
+                somethingToUpdate = true;
+            } else if(parseUser.get("profileSport") != null && parseUser.get("profileSport").toString().length() > 0 &&
+                    edtTabProfileSport.getText().toString().isEmpty()) {
+                parseUser.put("profileSport", "");
                 somethingToUpdate = true;
             }
 
@@ -159,24 +206,34 @@ public class ProfileTab extends Fragment implements View.OnClickListener, Gestur
         } else {
             btnTabProfileUpdateInfoShouldUpdate = true;
 
-            if(parseUser.get("profileName") != null && !parseUser.get("profileName").toString().isEmpty()) {
+            if(parseUser.get("profileName") != null) {
                 edtTabProfileProfileName.setText(parseUser.get("profileName").toString());
-            }            
+            } else {
+                edtTabProfileProfileName.setText("");
+            }
             
-            if(parseUser.get("profileBio") != null && !parseUser.get("profileBio").toString().isEmpty()) {
+            if(parseUser.get("profileBio") != null) {
                 edtTabProfileBio.setText(parseUser.get("profileBio").toString());
-            }            
+            } else {
+                edtTabProfileBio.setText("");
+            }
             
-            if(parseUser.get("profileProfession") != null && !parseUser.get("profileProfession").toString().isEmpty()) {
+            if(parseUser.get("profileProfession") != null) {
                 edtTabProfileProfession.setText(parseUser.get("profileProfession").toString());
-            }            
+            } else {
+                edtTabProfileProfession.setText("");
+            }
             
-            if(parseUser.get("profileHobbies") != null && !parseUser.get("profileHobbies").toString().isEmpty()) {
+            if(parseUser.get("profileHobbies") != null) {
                 edtTabProfileHobbies.setText(parseUser.get("profileHobbies").toString());
-            }            
+            } else {
+                edtTabProfileHobbies.setText("");
+            }
             
-            if(parseUser.get("profileSport") != null && !parseUser.get("profileSport").toString().isEmpty()) {
+            if(parseUser.get("profileSport") != null) {
                 edtTabProfileSport.setText(parseUser.get("profileSport").toString());
+            } else {
+                edtTabProfileSport.setText("");
             }
             edtTabProfileProfileName.setEnabled(true);
 
@@ -191,13 +248,14 @@ public class ProfileTab extends Fragment implements View.OnClickListener, Gestur
     }
 
     private void btnTabProfileLogoutTapped() {
+        final String userName = parseUser.getUsername();
         ParseUser.logOutInBackground(new LogOutCallback() {
             @Override
             public void done(ParseException e) {
                 // TODO add Logout stuff
                 if (e == null){
                     FancyToast.makeText(getContext(),
-                            "Logout Success",
+                            String.format("%s logged out successfully!", userName), // TODO add to strings
                             FancyToast.LENGTH_LONG,
                             FancyToast.SUCCESS,
                             false)
@@ -215,61 +273,60 @@ public class ProfileTab extends Fragment implements View.OnClickListener, Gestur
         });
     }
     private void setTabProfileForm() {
-        if(parseUser.get("profileName") != null && !parseUser.get("profileName").toString().isEmpty()) {
-            btnTabProfileUpdateInfo.setText(R.string.btn_tab_profile_update_info_alternate);
-            btnTabProfileUpdateInfoShouldUpdate = false;
+        btnTabProfileUpdateInfo.setText(R.string.btn_tab_profile_update_info_alternate);
+        btnTabProfileUpdateInfoShouldUpdate = false;
+        edtTabProfileProfileName.setEnabled(false);
+        edtTabProfileBio.setEnabled(false);
+        edtTabProfileProfession.setEnabled(false);
+        edtTabProfileHobbies.setEnabled(false);
+        edtTabProfileSport.setEnabled(false);
 
+        if(parseUser.get("profileName") != null && parseUser.get("profileName").toString().length() > 0) {
             edtTabProfileProfileName.setText(
                     String.format(getString(
                             R.string.tab_profile_profile_name_txt_template),
                             parseUser.get("profileName").toString()
                     )
                 );
+        }
 
-            edtTabProfileProfileName.setEnabled(false);
-            edtTabProfileBio.setEnabled(false);
-            edtTabProfileProfession.setEnabled(false);
-            edtTabProfileHobbies.setEnabled(false);
-            edtTabProfileSport.setEnabled(false);
+        if(parseUser.get("profileBio") != null && parseUser.get("profileBio").toString().length() > 0) {
+            edtTabProfileBio.setText(
+                    String.format(getString(
+                            R.string.tab_profile_bio_txt_template),
+                            parseUser.get("profileBio").toString()
+                    )
+            );
 
-            if(parseUser.get("profileBio") != null ) {
-                edtTabProfileBio.setText(
-                        String.format(getString(
-                                R.string.tab_profile_bio_txt_template),
-                                parseUser.get("profileBio").toString()
-                        )
-                );
+        }
 
-            }
+        if(parseUser.get("profileProfession") != null && parseUser.get("profileBio").toString().length() > 0) {
+            edtTabProfileProfession.setText(
+                    String.format(getString(
+                            R.string.tab_profile_profession_txt_template),
+                            parseUser.get("profileProfession").toString()
+                    )
+            );
 
-            if(parseUser.get("profileProfession") != null) {
-                edtTabProfileProfession.setText(
-                        String.format(getString(
-                                R.string.tab_profile_profession_txt_template),
-                                parseUser.get("profileProfession").toString()
-                        )
-                );
+        }
 
-            }
+        if(parseUser.get("profileHobbies") != null && parseUser.get("profileHobbies").toString().length() > 0) {
+            edtTabProfileHobbies.setText(
+                    String.format(getString(
+                            R.string.tab_profile_hobbies_txt_template),
+                            parseUser.get("profileHobbies").toString()
+                    )
+            );
 
-            if(parseUser.get("profileHobbies") != null) {
-                edtTabProfileHobbies.setText(
-                        String.format(getString(
-                                R.string.tab_profile_hobbies_txt_template),
-                                parseUser.get("profileHobbies").toString()
-                        )
-                );
+        }
 
-            }
-
-            if(parseUser.get("profileSport") != null) {
-                edtTabProfileSport.setText(
-                        String.format(getString(
-                                R.string.tab_profile_sport_name_txt_template),
-                                parseUser.get("profileSport").toString()
-                        )
-                );
-            }
+        if(parseUser.get("profileSport") != null && parseUser.get("profileSport").toString().length() > 0) {
+            edtTabProfileSport.setText(
+                    String.format(getString(
+                            R.string.tab_profile_sport_name_txt_template),
+                            parseUser.get("profileSport").toString()
+                    )
+            );
         }
     }
 
