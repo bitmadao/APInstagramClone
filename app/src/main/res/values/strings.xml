@@ -55,5 +55,10 @@
     <string name="tab_profile_sport_name_txt_template">Sport: %s</string>
     <string name="toast_tab_profile_profile_update_success">Profile update successful!</string>
 
+    <!-- SharePictureTab -->
+    <string name="hint_tab_share_picture_description">Image description...</string>
+    <string name="btn_tab_share_picture_share_image">Share Image</string>
+    <string name="btn_tab_share_picture_share_image_before_choosing">Tap image placeholder to select image.</string>
+
 
 </resources>
