@@ -249,32 +249,7 @@ public class ProfileTab extends Fragment implements View.OnClickListener, Gestur
     }
 
     private void btnTabProfileLogoutTapped() {
-        final String userName = parseUser.getUsername();
-        ParseUser.logOutInBackground(new LogOutCallback() {
-            @Override
-            public void done(ParseException e) {
-                // TODO add Logout stuff
-                if (e == null){
-                    FancyToast.makeText(getContext(),
-                            String.format("%s logged out successfully!", userName), // TODO add to strings
-                            FancyToast.LENGTH_LONG,
-                            FancyToast.SUCCESS,
-                            false)
-                        .show();
-                    Intent intent = new Intent(getContext(),LoginActivity.class);
-                    startActivity(intent);
-                    getActivity().finish();
-
-                } else {
-                    FancyToast.makeText(getContext(),
-                            e.getMessage(),
-                            FancyToast.LENGTH_LONG,
-                            FancyToast.ERROR,
-                            false)
-                        .show();
-                }
-            }
-        });
+        ((SocialMediaActivity)getActivity()).logoutUserItemMethod();
     }
     private void setTabProfileForm() {
         btnTabProfileUpdateInfo.setText(R.string.btn_tab_profile_update_info_alternate);
