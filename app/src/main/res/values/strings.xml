@@ -60,5 +60,9 @@
     <string name="btn_tab_share_picture_share_image">Share Image</string>
     <string name="btn_tab_share_picture_share_image_before_choosing">Tap image placeholder to select image.</string>
 
+    <!-- my_menu.xml -->
+    <string name="label_post_image_item">Post Image</string>
+    <string name="label_logout_user_item">Logout</string>
+
 
 </resources>
