@@ -1,5 +1,6 @@
 package com.udemy.apinstagramclone;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
@@ -7,6 +8,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -41,5 +43,20 @@ public class SocialMediaActivity extends AppCompatActivity {
         menuInflater.inflate(R.menu.my_menu, menu);
 
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+
+            case R.id.postImageItem:
+
+                break;
+
+            case R.id.logutUserItem:
+                
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
