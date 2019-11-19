@@ -73,7 +73,7 @@ public class UsersTab extends Fragment {
                         txtTabUsersLoadingUsers.animate().alpha(0).setDuration(2000).start();
                         listViewTabUsers.animate().alpha(listViewTabUsersAlpha).setDuration(3000);
                     }
-                }
+                } // TODO error handling
             }
         });
     }
