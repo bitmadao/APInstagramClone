@@ -1,6 +1,7 @@
 package com.udemy.apinstagramclone;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -260,7 +261,10 @@ public class ProfileTab extends Fragment implements View.OnClickListener, Gestur
                             FancyToast.SUCCESS,
                             false)
                         .show();
+                    Intent intent = new Intent(getContext(),LoginActivity.class);
+                    startActivity(intent);
                     getActivity().finish();
+
                 } else {
                     FancyToast.makeText(getContext(),
                             e.getMessage(),

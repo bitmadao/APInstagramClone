@@ -117,7 +117,7 @@ public class SharePictureTab extends Fragment implements View.OnClickListener{
                 ParseObject parseObject = new ParseObject("Photo");
                 parseObject.put("picture",parseFile);
                 parseObject.put("image_des",edtTabSharePictureDescription.getText().toString());
-                parseObject.put("username", ParseUser.getCurrentUser());
+                parseObject.put("username", ParseUser.getCurrentUser().getUsername());
 
                 final ProgressDialog dialog = new ProgressDialog(getContext());
                 dialog.setMessage("Loading");

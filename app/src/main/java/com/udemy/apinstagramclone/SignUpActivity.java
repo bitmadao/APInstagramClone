@@ -193,12 +193,14 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         //do something
         Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
         startActivity(intent);
+        finish();
     }
 
     private void transitionToSocialMediaActivity(){
 
         Intent intent = new Intent(SignUpActivity.this,SocialMediaActivity.class);
         startActivity(intent);
+        finish();
     }
 
 } // class ends here
