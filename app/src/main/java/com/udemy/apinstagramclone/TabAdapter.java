@@ -40,13 +40,13 @@ public class TabAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch(position){
             case 0:
-                return "Profile"; // TODO add to strings.xml
+                return "Profile";
 
             case 1:
-                return "Users";// TODO add to strings.xml
+                return "Users";//
 
             case 2:
-                return "Share Picture";// TODO add to strings.xml
+                return "Share Picture";//
 
             default:
                 return null;
