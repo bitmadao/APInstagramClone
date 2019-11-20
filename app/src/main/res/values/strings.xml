@@ -44,6 +44,7 @@
     <!-- UsersPostsActivity.java -->
     <string name="activity_users_posts_title">%s\'s posts</string>
     <string name="toast_users_posts_has_no_posts">%s has no posts</string>
+    <string name="users_posts_no_description_provided">No description provided</string>
 
 
     <!-- ProfileTab -->

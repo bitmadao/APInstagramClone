@@ -59,9 +59,16 @@ public class UsersPostsActivity extends AppCompatActivity {
                 if(objects.size() > 0 && e == null) {
 
                     for (ParseObject post : objects) {
+                        String descriptionString;
+
+                        if(post.get("image_des") != null) {
+                            descriptionString = post.get("image_des").toString();
+                        } else {
+                            descriptionString = getString(R.string.users_posts_no_description_provided);
+                        }
 
                         final TextView postDescription = new TextView(UsersPostsActivity.this);
-                        postDescription.setText((String) post.get("image_des")); // TODO think about nulls
+                        postDescription.setText(descriptionString);
                         ParseFile postPicture = (ParseFile) post.get("picture");
 
                         postPicture.getDataInBackground(new GetDataCallback() {
