@@ -1,6 +1,7 @@
 package com.udemy.apinstagramclone;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -17,7 +19,6 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,11 +26,11 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class UsersTab extends Fragment {
+public class UsersTab extends Fragment implements AdapterView.OnItemClickListener {
 
     private ListView listViewTabUsers;
     private float listViewTabUsersAlpha;
-    private ArrayList arrayList;
+    private ArrayList<String> arrayListUsernamesTabUsers;
     private ArrayAdapter arrayAdapter;
     private TextView txtTabUsersLoadingUsers;
 
@@ -47,13 +48,26 @@ public class UsersTab extends Fragment {
         listViewTabUsers = usersTabView.findViewById(R.id.listViewTabUsers);
         listViewTabUsersAlpha = listViewTabUsers.getAlpha();
         listViewTabUsers.setAlpha(0);
-        arrayList = new ArrayList();
-        arrayAdapter = new ArrayAdapter(getContext(),android.R.layout.simple_list_item_1,arrayList);
+        arrayListUsernamesTabUsers = new ArrayList();
+        arrayAdapter = new ArrayAdapter(getContext(),android.R.layout.simple_list_item_1, arrayListUsernamesTabUsers);
+
+        listViewTabUsers.setOnItemClickListener(UsersTab.this);
+
         txtTabUsersLoadingUsers = usersTabView.findViewById(R.id.txtTabUsersLoadingUsers);
 
         populateUsersListView();
 
         return usersTabView;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        Intent intent = new Intent(getContext(),UsersPostsActivity.class);
+        intent.putExtra("username",(arrayListUsernamesTabUsers.get(position)));
+        startActivity(intent);
+
+
     }
 
     private void populateUsersListView() {
@@ -67,7 +81,7 @@ public class UsersTab extends Fragment {
                 if(e == null) {
                     if(objects.size() > 0) {
                         for(ParseUser user: objects){
-                            arrayList.add(user.getUsername());
+                            arrayListUsernamesTabUsers.add(user.getUsername());
                         }
                         listViewTabUsers.setAdapter(arrayAdapter);
                         txtTabUsersLoadingUsers.animate().alpha(0).setDuration(2000).start();
@@ -77,4 +91,6 @@ public class UsersTab extends Fragment {
             }
         });
     }
+
+
 }
