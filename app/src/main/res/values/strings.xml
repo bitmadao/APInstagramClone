@@ -36,8 +36,6 @@
     <!-- SocialMediaActivity -->
     <string name="activity_social_media_title">Social Media!</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- ProfileTab -->
     <string name="hint_tab_profile_profile_name">Your profile name</string>
