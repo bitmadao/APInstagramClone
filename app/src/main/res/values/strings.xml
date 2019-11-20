@@ -9,10 +9,10 @@
 
     <!-- SignUpActivity -->
     <string name="activity_sign_up_title">Sign Up</string>
-    <string name="hint_sign_up_email">Please enter an email-address...</string>
-    <string name="hint_sign_up_username">Please enter a username...</string>
-    <string name="hint_sign_up_password">Please enter a password...</string>
-    <string name="hint_sign_up_password_confirm">Please confirm password...</string>
+    <string name="hint_sign_up_email">Please enter an email-address…</string>
+    <string name="hint_sign_up_username">Please enter a username…</string>
+    <string name="hint_sign_up_password">Please enter a password…</string>
+    <string name="hint_sign_up_password_confirm">Please confirm password…</string>
     <string name="btn_sign_up_sign_up">Sign Up</string>
     <string name="btn_sign_up_already_signed_up">I have an account!</string>
     <string name="toast_sign_up_need_email">You must enter an email address.</string>
@@ -20,12 +20,12 @@
     <string name="toast_sign_up_need_password">You must enter a password and confirm it.</string>
     <string name="toast_sign_up_objection_stringbuilder">Ooops, please have a look at the following:\n</string>
     <string name="toast_sign_up_success">Successfully created user %s</string>
-    <string name="progress_sign_up_sign_up">Creating account for %s\.\.\.</string>
+    <string name="progress_sign_up_sign_up">Creating account for %s…</string>
 
     <!-- LoginActivity -->
     <string name="activity_login_title">Login</string>
-    <string name="hint_login_email">Enter account email-address...</string>
-    <string name="hint_login_password">Enter account password...</string>
+    <string name="hint_login_email">Enter account email-address…</string>
+    <string name="hint_login_password">Enter account password…</string>
     <string name="btn_login_login">Login</string>
     <string name="btn_login_need_account">I need an account!</string>
     <string name="toast_login_login_success">%s logged in successfully!</string>
@@ -52,9 +52,10 @@
     <string name="tab_profile_hobbies_txt_template">Hobbies: %s</string>
     <string name="tab_profile_sport_name_txt_template">Sport: %s</string>
     <string name="toast_tab_profile_profile_update_success">Profile update successful!</string>
+    <string name="toast_tab_profile_profile_update_no_updates">No changes made.</string>
 
     <!-- SharePictureTab -->
-    <string name="hint_tab_share_picture_description">Image description...</string>
+    <string name="hint_tab_share_picture_description">Image description…</string>
     <string name="btn_tab_share_picture_share_image">Share Image</string>
     <string name="btn_tab_share_picture_share_image_before_choosing">Tap image placeholder to select image.</string>
 

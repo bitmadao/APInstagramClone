@@ -1,22 +1,17 @@
 package com.udemy.apinstagramclone;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.text.InputType;
 import android.util.Log;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.parse.LogOutCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
@@ -26,7 +21,7 @@ import com.shashank.sony.fancytoastlib.FancyToast;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProfileTab extends Fragment implements View.OnClickListener, GestureDetector.OnDoubleTapListener{
+public class ProfileTab extends Fragment implements View.OnClickListener{
 
     private EditText edtTabProfileProfileName,
             edtTabProfileBio,
@@ -34,7 +29,7 @@ public class ProfileTab extends Fragment implements View.OnClickListener, Gestur
             edtTabProfileHobbies,
             edtTabProfileSport;
 
-    private Button btnTabProfileUpdateInfo, btnTabProfileLogout;
+    private Button btnTabProfileUpdateInfo;
 
     private ParseUser parseUser;
 
@@ -59,41 +54,12 @@ public class ProfileTab extends Fragment implements View.OnClickListener, Gestur
         edtTabProfileSport = profileTabView.findViewById(R.id.edtTabProfileSport);
 
         btnTabProfileUpdateInfo = profileTabView.findViewById(R.id.btnTabProfileUpdateInfo);
-        btnTabProfileLogout = profileTabView.findViewById(R.id.btnTabProfileLogout);
 
         parseUser = ParseUser.getCurrentUser();
         btnTabProfileUpdateInfo.setOnClickListener(ProfileTab.this);
-        btnTabProfileLogout.setOnClickListener(ProfileTab.this);
-        btnTabProfileLogout.setText(
-                String.format(getString(R.string.btn_tab_profile_logout),
-                parseUser.getUsername())
-            );
 
 
         setTabProfileForm();
-
-        try {
-            if (parseUser.get("profileName").toString().isEmpty()) {
-                Log.i("AppTag", "isEmpty Block");
-            } else {
-                Log.i("AppTag", "!isEmpty Block");
-            }
-
-
-        } catch(Exception e) {
-            Log.i("AppTag", e.getMessage());
-        }
-
-        try{
-            if(edtTabProfileProfileName.getText().toString().isEmpty()) {
-                Log.i("AppTag", "EditText is empty.");
-            } else {
-                Log.i("AppTag","EditText is not empty.");
-            }
-        } catch (Exception e) {
-            Log.i("AppTag", e.getMessage());
-        }
-
 
         // must return a view
         return profileTabView;
@@ -106,9 +72,6 @@ public class ProfileTab extends Fragment implements View.OnClickListener, Gestur
                 btnTabProfileUpdateInfoTapped();
                 break;
 
-            case R.id.btnTabProfileLogout:
-                btnTabProfileLogoutTapped();
-                break;
         }
 
 
@@ -197,7 +160,7 @@ public class ProfileTab extends Fragment implements View.OnClickListener, Gestur
                 });
             } else {
                 FancyToast.makeText(getContext(),
-                        "No changes made", // TODO add to strings.xml
+                        getString(R.string.toast_tab_profile_profile_update_no_updates),
                         FancyToast.LENGTH_LONG,
                         FancyToast.INFO,
                         false)
@@ -248,9 +211,6 @@ public class ProfileTab extends Fragment implements View.OnClickListener, Gestur
         }
     }
 
-    private void btnTabProfileLogoutTapped() {
-        ((SocialMediaActivity)getActivity()).logoutUserItemMethod();
-    }
     private void setTabProfileForm() {
         btnTabProfileUpdateInfo.setText(R.string.btn_tab_profile_update_info_alternate);
         btnTabProfileUpdateInfoShouldUpdate = false;
@@ -307,20 +267,5 @@ public class ProfileTab extends Fragment implements View.OnClickListener, Gestur
                     )
             );
         }
-    }
-
-    @Override
-    public boolean onSingleTapConfirmed(MotionEvent e) {
-        return false;
-    }
-
-    @Override
-    public boolean onDoubleTap(MotionEvent e) {
-        return false;
-    }
-
-    @Override
-    public boolean onDoubleTapEvent(MotionEvent e) {
-        return false;
     }
 }
