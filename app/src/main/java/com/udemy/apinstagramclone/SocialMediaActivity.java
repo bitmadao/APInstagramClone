@@ -136,7 +136,7 @@ public class SocialMediaActivity extends AppCompatActivity {
 
                             Log.i("AppTag", e.getMessage());
                             FancyToast.makeText(getApplicationContext(),
-                                    e.getMessage(),
+                                    getString(R.string.toast_generic_error),
                                     FancyToast.LENGTH_LONG,
                                     FancyToast.ERROR,
                                     false)
@@ -179,10 +179,10 @@ public class SocialMediaActivity extends AppCompatActivity {
         ParseUser.logOutInBackground(new LogOutCallback() {
             @Override
             public void done(ParseException e) {
-                // TODO add Logout stuff
+
                 if (e == null){
                     FancyToast.makeText(SocialMediaActivity.this,
-                            String.format("%s logged out successfully!", userName), // TODO add to strings
+                            String.format(getString(R.string.toast_social_media_logout_successful), userName),
                             FancyToast.LENGTH_LONG,
                             FancyToast.SUCCESS,
                             false)
@@ -191,8 +191,10 @@ public class SocialMediaActivity extends AppCompatActivity {
                     startActivity(intent);
                     SocialMediaActivity.this.finish();
                 } else {
+                    Log.i("AppTag",e.getMessage());
+
                     FancyToast.makeText(SocialMediaActivity.this,
-                            e.getMessage(),
+                            getString(R.string.toast_generic_error),
                             FancyToast.LENGTH_LONG,
                             FancyToast.ERROR,
                             false)

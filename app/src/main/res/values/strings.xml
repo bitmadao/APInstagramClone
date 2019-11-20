@@ -38,6 +38,7 @@
 
     <!-- SocialMediaActivity -->
     <string name="activity_social_media_title">Social Media!</string>
+    <string name="toast_social_media_logout_successful">%s logged out successfully!</string>
 
 
     <!-- ProfileTab -->
