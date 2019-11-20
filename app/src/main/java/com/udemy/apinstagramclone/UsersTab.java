@@ -3,6 +3,7 @@ package com.udemy.apinstagramclone;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,11 +95,11 @@ public class UsersTab extends Fragment implements AdapterView.OnItemClickListene
                     final PrettyDialog prettyDialog = new PrettyDialog(getContext());
 
                     prettyDialog
-                            .setTitle(String.format("%s's info",object.getUsername())) // TODO strings.xml
+                            .setTitle(String.format(getString(R.string.dialog_tab_users_long_click),object.getUsername())) 
                             .setMessage(userMessageStringBuilder.toString())
                             .setIcon(R.drawable.person)
                             .addButton(
-                                    "OK", // TODO strings.xml
+                                    getString(R.string.generic_ok),
                                     R.color.pdlg_color_white,
                                     R.color.pdlg_color_green,
                                     new PrettyDialogCallback() {
@@ -132,7 +134,15 @@ public class UsersTab extends Fragment implements AdapterView.OnItemClickListene
                         txtTabUsersLoadingUsers.animate().alpha(0).setDuration(2000).start();
                         listViewTabUsers.animate().alpha(listViewTabUsersAlpha).setDuration(3000);
                     }
-                } // TODO error handling
+                } else {
+                    Log.i("AppTag",e.getMessage());
+                    FancyToast.makeText(getContext(),
+                                getString(R.string.toast_generic_error),
+                                FancyToast.LENGTH_LONG,
+                                FancyToast.ERROR,
+                                false)
+                            .show();
+                }
             }
         });
     }

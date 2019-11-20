@@ -9,6 +9,7 @@
 
     <!-- General strings-->
     <string name="toast_generic_error">Something went wrong, sorry!</string>
+    <string name="generic_ok">OK</string>
 
     <!-- SignUpActivity -->
     <string name="activity_sign_up_title">Sign Up</string>
@@ -57,6 +58,9 @@
     <string name="tab_profile_sport_name_txt_template">Sport: %s</string>
     <string name="toast_tab_profile_profile_update_success">Profile update successful!</string>
     <string name="toast_tab_profile_profile_update_no_updates">No changes made.</string>
+
+    <!-- UsersTab -->
+    <string name="dialog_tab_users_long_click">%s\'s info</string>
 
     <!-- SharePictureTab -->
     <string name="hint_tab_share_picture_description">Image description…</string>
