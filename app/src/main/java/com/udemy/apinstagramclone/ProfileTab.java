@@ -150,7 +150,7 @@ public class ProfileTab extends Fragment implements View.OnClickListener{
                         } else {
                             Log.i("AppTag", e.getMessage());
                             FancyToast.makeText(getContext(),
-                                    e.getMessage(), // TODO make user friendly error
+                                    getString(R.string.toast_generic_error), 
                                     FancyToast.LENGTH_LONG,
                                     FancyToast.ERROR,
                                     false)
