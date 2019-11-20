@@ -36,7 +36,7 @@ public class UsersPostsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_users_posts);
         Intent receivedIntentObject = getIntent();
         postsUsername = receivedIntentObject.getStringExtra("username");
-        setTitle(String.format("%s's posts",postsUsername)); //TODO add to strings.xml
+        setTitle(String.format(getString(R.string.activity_users_posts_title),postsUsername));
 
         activityUsersPostsLinearLayout = findViewById(R.id.activityUsersPostsLinearLayout);
 
@@ -113,7 +113,7 @@ public class UsersPostsActivity extends AppCompatActivity {
                 } else {
 
                     FancyToast.makeText(UsersPostsActivity.this,
-                            String.format("%s has no posts", postsUsername), //TODO strings.xml
+                            String.format(getString(R.string.toast_users_posts_has_no_posts), postsUsername),
                             FancyToast.LENGTH_LONG,
                             FancyToast.CONFUSING,
                             false
