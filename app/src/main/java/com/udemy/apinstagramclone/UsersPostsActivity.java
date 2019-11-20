@@ -102,18 +102,29 @@ public class UsersPostsActivity extends AppCompatActivity {
                         });
 
                     }
-                    dialog.dismiss();
-                } else {
+                } else if (e != null ){
                     FancyToast.makeText(UsersPostsActivity.this,
                             e.getMessage(),
                             FancyToast.LENGTH_LONG,
                             FancyToast.ERROR,
                             false
-                        );
-                    dialog.dismiss();
+                        ).show();
+
+                } else {
+
+                    FancyToast.makeText(UsersPostsActivity.this,
+                            String.format("%s has no posts", postsUsername), //TODO strings.xml
+                            FancyToast.LENGTH_LONG,
+                            FancyToast.CONFUSING,
+                            false
+                        ).show();
+                    finish();
                 }
+                dialog.dismiss();
             }
+
         });
+
 
     } // end of populateUsersPosts()
 } // end of class
