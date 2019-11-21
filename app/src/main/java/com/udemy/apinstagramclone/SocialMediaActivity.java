@@ -133,7 +133,7 @@ public class SocialMediaActivity extends AppCompatActivity {
                 ParseFile parseFile = new ParseFile("share.png",bytes);
                 ParseObject parseObject = new ParseObject("Photo");
                 parseObject.put("picture",parseFile);
-                parseObject.put("image_des","_MENU_POST"); // 
+                parseObject.put("image_des","_MENU_POST"); 
                 parseObject.put("username", ParseUser.getCurrentUser().getUsername());
 
                 if(Build.VERSION.SDK_INT <= 21) {
