@@ -118,7 +118,7 @@ public class SharePictureTab extends Fragment implements View.OnClickListener{
         if(uploadedBitmap != null) {
             if(edtTabSharePictureDescription.getText().toString().isEmpty()){
                 FancyToast.makeText(getContext(),
-                        "You must provide a description..", // TODO strings.xml
+                        getString(R.string.toast_tab_share_picture_must_describe),
                         FancyToast.LENGTH_LONG,
                         FancyToast.INFO,false)
                     .show();
@@ -147,7 +147,7 @@ public class SharePictureTab extends Fragment implements View.OnClickListener{
                     public void done(ParseException e) {
                         if(e == null) {
                             FancyToast.makeText(getContext(),
-                                    "Upload successful", // TODO strings.xml
+                                    getString(R.string.toast_tab_share_picture_upload_success),
                                     FancyToast.LENGTH_LONG,
                                     FancyToast.SUCCESS,
                                     false)
@@ -173,7 +173,12 @@ public class SharePictureTab extends Fragment implements View.OnClickListener{
             }
 
         } else {
-            FancyToast.makeText(getContext(),"Uh-oooh!",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show(); //TODO strings.xml
+            FancyToast.makeText(getContext(),
+                    getString(R.string.toast_generic_error),
+                    FancyToast.LENGTH_LONG,
+                    FancyToast.ERROR,
+                    false)
+                .show();
         }
 
     }

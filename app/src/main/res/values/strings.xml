@@ -42,6 +42,7 @@
     <string name="activity_social_media_title">Social Media!</string>
     <string name="toast_social_media_logout_successful">%s logged out successfully!</string>
     <string name="dialog_social_media_activity_posting">Posting Image…</string>
+    <string name="toast_social_media_post_successful">Post Successful.</string>
 
     <!-- UsersPostsActivity.java -->
     <string name="activity_users_posts_title">%s\'s posts</string>
@@ -73,6 +74,8 @@
     <string name="hint_tab_share_picture_description">Image description…</string>
     <string name="btn_tab_share_picture_share_image">Share Image</string>
     <string name="btn_tab_share_picture_share_image_before_choosing">Tap image placeholder to select image.</string>
+    <string name="toast_tab_share_picture_must_describe">You must provide a description…</string>
+    <string name="toast_tab_share_picture_upload_success">Upload successful</string>
 
     <!-- my_menu.xml -->
     <string name="label_post_image_item">Post Image</string>

@@ -68,7 +68,7 @@ public class UsersPostsActivity extends AppCompatActivity {
 
 
         if (android.os.Build.VERSION.SDK_INT <= 21) {
-            dialog = new ProgressDialog(this); 
+            dialog = new ProgressDialog(this);
             dialog.setMessage(getString(R.string.generic_dialog_loading));
             dialog.show();
         } else {
@@ -83,7 +83,7 @@ public class UsersPostsActivity extends AppCompatActivity {
                     for (ParseObject post : objects) {
                         String descriptionString;
 
-                        if (post.get("image_des") != null) {
+                        if (post.get("image_des") != null && !post.get("image_des").toString().equals("_MENU_POST")) {
                             descriptionString = post.get("image_des").toString();
                         } else {
                             descriptionString = getString(R.string.users_posts_no_description_provided);

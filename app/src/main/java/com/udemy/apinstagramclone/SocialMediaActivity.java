@@ -133,7 +133,7 @@ public class SocialMediaActivity extends AppCompatActivity {
                 ParseFile parseFile = new ParseFile("share.png",bytes);
                 ParseObject parseObject = new ParseObject("Photo");
                 parseObject.put("picture",parseFile);
-                parseObject.put("image_des","From menu post button"); // TODO strings.xml
+                parseObject.put("image_des","_MENU_POST"); // 
                 parseObject.put("username", ParseUser.getCurrentUser().getUsername());
 
                 if(Build.VERSION.SDK_INT <= 21) {
@@ -148,7 +148,7 @@ public class SocialMediaActivity extends AppCompatActivity {
                     public void done(ParseException e) {
                         if(e == null) {
                             FancyToast.makeText(getApplicationContext(),
-                                    "Post successful", // TODO strings.xml
+                                    getString(R.string.toast_social_media_post_successful),
                                     FancyToast.LENGTH_LONG,
                                     FancyToast.SUCCESS,
                                     false)
