@@ -13,3 +13,4 @@
 /captures
 .externalNativeBuild
 .cxx
+app/src/main/res/values/backend_strings.xml
