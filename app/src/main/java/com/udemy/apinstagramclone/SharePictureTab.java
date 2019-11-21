@@ -10,10 +10,12 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
@@ -25,6 +27,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -41,11 +44,15 @@ import java.io.ByteArrayOutputStream;
  */
 public class SharePictureTab extends Fragment implements View.OnClickListener{
 
+    private ConstraintLayout constraintLayout;
+    private ProgressBar progressBar;
     private ImageView imgTabSharePicture;
     private EditText edtTabSharePictureDescription;
     private Button btnTabSharePictureShareImage;
 
     private Bitmap uploadedBitmap;
+
+    private ProgressDialog dialog;
 
     public SharePictureTab() {
         // Required empty public constructor
@@ -58,6 +65,14 @@ public class SharePictureTab extends Fragment implements View.OnClickListener{
         // Inflate the layout for this fragment
         View sharePictureTabView = inflater.inflate(R.layout.fragment_share_picture_tab, container, false);
 
+        constraintLayout = sharePictureTabView.findViewById(R.id.tabShareImageConstraintLayout);
+
+        if(Build.VERSION.SDK_INT > 21){
+            progressBar = new ProgressBar(getContext(), null, android.R.attr.progressBarStyleLarge);
+            ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(100,100);
+            constraintLayout.addView(progressBar,params);
+            progressBar.setVisibility(View.GONE);
+        }
         btnTabSharePictureShareImage = sharePictureTabView.findViewById(R.id.btnTabSharePictureShareImage);
 
         imgTabSharePicture = sharePictureTabView.findViewById(R.id.imgTabSharePicture);
@@ -103,7 +118,7 @@ public class SharePictureTab extends Fragment implements View.OnClickListener{
         if(uploadedBitmap != null) {
             if(edtTabSharePictureDescription.getText().toString().isEmpty()){
                 FancyToast.makeText(getContext(),
-                        "You must provide a description..",
+                        "You must provide a description..", // TODO strings.xml
                         FancyToast.LENGTH_LONG,
                         FancyToast.INFO,false)
                     .show();
@@ -119,16 +134,20 @@ public class SharePictureTab extends Fragment implements View.OnClickListener{
                 parseObject.put("image_des",edtTabSharePictureDescription.getText().toString());
                 parseObject.put("username", ParseUser.getCurrentUser().getUsername());
 
-                final ProgressDialog dialog = new ProgressDialog(getContext());
-                dialog.setMessage("Loading");
-                dialog.show();
+                if(Build.VERSION.SDK_INT <= 21) {
+                    dialog = new ProgressDialog(getContext());
+                    dialog.setMessage(getString(R.string.generic_dialog_loading));
+                    dialog.show();
+                } else {
+                    progressBar.setVisibility(View.VISIBLE);
+                }
 
                 parseObject.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {
                         if(e == null) {
                             FancyToast.makeText(getContext(),
-                                    "Upload successful",
+                                    "Upload successful", // TODO strings.xml
                                     FancyToast.LENGTH_LONG,
                                     FancyToast.SUCCESS,
                                     false)
@@ -142,7 +161,11 @@ public class SharePictureTab extends Fragment implements View.OnClickListener{
                                     false)
                                 .show();
                         }
-                        dialog.dismiss();
+                        if(Build.VERSION.SDK_INT <= 21) {
+                            dialog.dismiss();
+                        } else {
+                            progressBar.setVisibility(View.GONE);
+                        }
                     }
                 });
 
@@ -150,7 +173,7 @@ public class SharePictureTab extends Fragment implements View.OnClickListener{
             }
 
         } else {
-            FancyToast.makeText(getContext(),"Uh-oooh!",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
+            FancyToast.makeText(getContext(),"Uh-oooh!",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show(); //TODO strings.xml
         }
 
     }

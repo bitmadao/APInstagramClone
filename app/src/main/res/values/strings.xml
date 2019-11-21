@@ -9,7 +9,8 @@
 
     <!-- General strings-->
     <string name="toast_generic_error">Something went wrong, sorry!</string>
-    <string name="generic_ok">OK</string>
+    <string name="generic_dialog_ok">OK</string>
+    <string name="generic_dialog_loading">Loading…</string>
 
     <!-- SignUpActivity -->
     <string name="activity_sign_up_title">Sign Up</string>
@@ -40,6 +41,7 @@
     <!-- SocialMediaActivity -->
     <string name="activity_social_media_title">Social Media!</string>
     <string name="toast_social_media_logout_successful">%s logged out successfully!</string>
+    <string name="dialog_social_media_activity_posting">Posting Image…</string>
 
     <!-- UsersPostsActivity.java -->
     <string name="activity_users_posts_title">%s\'s posts</string>

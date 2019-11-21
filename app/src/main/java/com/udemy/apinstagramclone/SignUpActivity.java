@@ -6,15 +6,16 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.parse.LogOutCallback;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParseUser;
@@ -23,20 +24,30 @@ import com.shashank.sony.fancytoastlib.FancyToast;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener, View.OnKeyListener{
 
-    private ConstraintLayout rootLayoutSignUpActivity;
+    private ConstraintLayout constraintLayout;
     private TextInputEditText edtSignUpEmail, edtSignUpUsername, edtSignUpPassword, edtSignUpPasswordConfirm;
 
     private Button btnSignUpSignUp, btnSignUpAlreadySignedUp;
+
+    private ProgressDialog progressDialog;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         this.setTitle(R.string.activity_sign_up_title);
-        rootLayoutSignUpActivity = findViewById(R.id.rootLayoutSignUpActivity);
+        constraintLayout = findViewById(R.id.activitySignUpConstraintLayout);
 
         // Save the current Installation to Back4App
         ParseInstallation.getCurrentInstallation().saveInBackground();
+
+        if(Build.VERSION.SDK_INT > 21){
+            progressBar = new ProgressBar(SignUpActivity.this, null, android.R.attr.progressBarStyleLarge);
+            ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(100,100);
+            constraintLayout.addView(progressBar,params);
+            progressBar.setVisibility(View.GONE);
+        }
 
         edtSignUpEmail = findViewById(R.id.edtSignUpEmail);
         edtSignUpUsername = findViewById(R.id.edtSignUpUsername);
@@ -48,23 +59,11 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         edtSignUpPasswordConfirm.setOnKeyListener(SignUpActivity.this);
 
-        rootLayoutSignUpActivity.setOnClickListener(SignUpActivity.this);
+        constraintLayout.setOnClickListener(SignUpActivity.this);
         btnSignUpSignUp.setOnClickListener(SignUpActivity.this);
         btnSignUpAlreadySignedUp.setOnClickListener(SignUpActivity.this);
 
         if(ParseUser.getCurrentUser() != null){
-            /*
-            ParseUser.logOutInBackground(new LogOutCallback() {
-                @Override
-                public void done(ParseException e) {
-                    if(e == null){
-                        Log.i("logoutTag","A user was logged out");
-                    } else {
-                        Log.i("logoutTag", e.getMessage());
-                    }
-                }
-            });
-             */
             transitionToSocialMediaActivity();
         }
 
@@ -75,7 +74,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         switch (v.getId()){
 
-            case R.id.rootLayoutSignUpActivity:
+            case R.id.activitySignUpConstraintLayout:
                 rootSignUpActivityLayoutTapped();
                 break;
 
@@ -150,13 +149,17 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         appUser.setUsername(edtSignUpUsername.getText().toString());
         appUser.setPassword(edtSignUpPassword.getText().toString());
 
-        final ProgressDialog progressDialog = new ProgressDialog(SignUpActivity.this);
-        progressDialog.setMessage(
-                String.format(
-                        getString(R.string.progress_sign_up_sign_up),
-                        edtSignUpUsername.getText().toString())
+        if(Build.VERSION.SDK_INT <= 21) {
+            progressDialog = new ProgressDialog(SignUpActivity.this);
+            progressDialog.setMessage(
+                    String.format(
+                            getString(R.string.progress_sign_up_sign_up),
+                            edtSignUpUsername.getText().toString())
             );
-        progressDialog.show();
+            progressDialog.show();
+        } else {
+            progressBar.setVisibility(View.VISIBLE);
+        }
 
         appUser.signUpInBackground(new SignUpCallback() {
             @Override
@@ -169,7 +172,11 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                             FancyToast.SUCCESS,
                             false)
                         .show();
-                    progressDialog.dismiss();
+                    if(Build.VERSION.SDK_INT <= 21) {
+                        progressDialog.dismiss();
+                    } else {
+                        progressBar.setVisibility(View.GONE);
+                    }
                     transitionToSocialMediaActivity();
 
                 } else {
@@ -180,7 +187,11 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                             FancyToast.ERROR,
                             true)
                         .show();
-                    progressDialog.dismiss();
+                    if(Build.VERSION.SDK_INT <= 21) {
+                        progressDialog.dismiss();
+                    } else {
+                        progressBar.setVisibility(View.GONE);
+                    }
                 }
 
             }

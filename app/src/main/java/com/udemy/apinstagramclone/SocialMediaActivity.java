@@ -19,6 +19,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import com.google.android.material.tabs.TabLayout;
 import com.parse.LogOutCallback;
@@ -33,6 +36,8 @@ import java.io.ByteArrayOutputStream;
 
 public class SocialMediaActivity extends AppCompatActivity {
 
+    private RelativeLayout relativeLayout;
+
     private Toolbar toolbar;
     private ViewPager viewPager;
     private TabLayout tabLayout;
@@ -40,11 +45,23 @@ public class SocialMediaActivity extends AppCompatActivity {
 
     private Bitmap capturedBitmap;
 
+    private ProgressDialog dialog;
+    private ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_social_media);
         this.setTitle(R.string.activity_social_media_title);
+
+        relativeLayout = findViewById(R.id.activitySocialMediaRelativeLayout);
+
+        if(Build.VERSION.SDK_INT > 21){
+            progressBar = new ProgressBar(SocialMediaActivity.this, null, android.R.attr.progressBarStyleLarge);
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(100,100);
+            relativeLayout.addView(progressBar,params);
+            progressBar.setVisibility(View.GONE);
+        }
 
         toolbar = findViewById(R.id.myToolbar);
         setSupportActionBar(toolbar);
@@ -116,18 +133,22 @@ public class SocialMediaActivity extends AppCompatActivity {
                 ParseFile parseFile = new ParseFile("share.png",bytes);
                 ParseObject parseObject = new ParseObject("Photo");
                 parseObject.put("picture",parseFile);
-                parseObject.put("image_des","From menu post button");
+                parseObject.put("image_des","From menu post button"); // TODO strings.xml
                 parseObject.put("username", ParseUser.getCurrentUser().getUsername());
 
-                final ProgressDialog dialog = new ProgressDialog(SocialMediaActivity.this);
-                dialog.setMessage("Posting image...");
+                if(Build.VERSION.SDK_INT <= 21) {
+                    dialog = new ProgressDialog(SocialMediaActivity.this);
+                    dialog.setMessage(getString(R.string.dialog_social_media_activity_posting));
+                } else {
+                    progressBar.setVisibility(View.VISIBLE);
+                }
 
                 parseObject.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {
                         if(e == null) {
                             FancyToast.makeText(getApplicationContext(),
-                                    "Post successful",
+                                    "Post successful", // TODO strings.xml
                                     FancyToast.LENGTH_LONG,
                                     FancyToast.SUCCESS,
                                     false)
@@ -142,7 +163,11 @@ public class SocialMediaActivity extends AppCompatActivity {
                                     false)
                                 .show();
                         }
-                        dialog.dismiss();
+                        if(Build.VERSION.SDK_INT <= 21) {
+                            dialog.dismiss();
+                        } else {
+                            progressBar.setVisibility(View.GONE);
+                        }
                     }
                 });
 

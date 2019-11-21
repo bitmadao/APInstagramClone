@@ -99,7 +99,7 @@ public class UsersTab extends Fragment implements AdapterView.OnItemClickListene
                             .setMessage(userMessageStringBuilder.toString())
                             .setIcon(R.drawable.person)
                             .addButton(
-                                    getString(R.string.generic_ok),
+                                    getString(R.string.generic_dialog_ok),
                                     R.color.pdlg_color_white,
                                     R.color.pdlg_color_green,
                                     new PrettyDialogCallback() {
